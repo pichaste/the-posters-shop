@@ -1,23 +1,25 @@
+// script.js
+
 // Data for Lamy products
 const lamyProducts = [
-    { id: 'p001', name: 'Lamy Safari Fountain Pen Poster', category: 'Safari', price: 29.99, isNew: true, isSold: false, image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmylamy.com.tw%2Fwp-content%2Fuploads%2FLAMY-SAFARI-2024-%25E5%25BE%25A9%25E5%258F%25A4%25E7%25B6%25A0%25E9%2587%2591%25E5%25A4%25BE-DM-%25E6%25AD%25A3%25E6%2596%25B9%25E9%258B%25BC%25E7%25AD%2586-scaled.jpg&f=1&nofb=1&ipt=01ba2c8278f9ef743e1d22dec2f13a6c81131a2d5d6f1e0807d7863f716a98d3', description: 'A vibrant tribute to the iconic Lamy Safari, known for its ergonomic design and bold colors.' },
-    { id: 'p002', name: 'Lamy Al-Star Blueprint Poster', category: 'Al-Star', price: 34.99, isNew: false, isSold: false, image: 'https://placehold.co/400x250/28a745/ffffff?text=Al-Star+Poster', description: 'An intricate blueprint design showcasing the aluminum body and transparent grip of the Al-Star series.' },
-    { id: 'p003', name: 'Lamy Lx Minimalist Art Print', category: 'Lx', price: 39.99, isNew: false, isSold: true, image: 'https://placehold.co/400x250/ffc107/343a40?text=Lx+Poster', description: 'A sleek and minimalist art print inspired by the elegant and refined Lamy Lx fountain pen.' },
-    { id: 'p004', name: 'Lamy 2000 Exploded View Poster', category: 'Lamy 2000', price: 49.99, isNew: true, isSold: false, image: 'https://placehold.co/400x250/dc3545/ffffff?text=2000+Poster', description: 'Detailed exploded view of the legendary Lamy 2000, highlighting its innovative design and craftsmanship.' },
-    { id: 'p005', name: 'Lamy Scala Abstract Design', category: 'Scala', price: 32.99, isNew: false, isSold: false, image: 'https://placehold.co/400x250/6f42c1/ffffff?text=Scala+Poster', description: 'An abstract interpretation of the Lamy Scala, focusing on its clean lines and sophisticated form.' },
-    { id: 'p006', name: 'Lamy Studio Geometric Print', category: 'Studio', price: 28.99, isNew: false, isSold: false, image: 'https://placehold.co/400x250/fd7e14/ffffff?text=Studio+Poster', description: 'A modern geometric print inspired by the unique propeller-shaped clip and cylindrical body of the Lamy Studio.' },
-    { id: 'p007', name: 'Lamy Aion Modern Art', category: 'Aion', price: 36.99, isNew: true, isSold: false, image: 'https://placehold.co/400x250/20c997/ffffff?text=Aion+Poster', description: 'Contemporary art piece capturing the seamless, elegant design of the Lamy Aion pen.' },
-    { id: 'p008', name: 'Lamy Cp1 Technical Drawing', category: 'Cp1', price: 31.99, isNew: false, isSold: true, image: 'https://placehold.co/400x250/6610f2/ffffff?text=Cp1+Poster', description: 'A precise technical drawing of the slender and minimalist Lamy CP1 pen.' },
-    { id: 'p009', name: 'Lamy Safari Blue Edition', category: 'Safari', price: 29.99, isNew: false, isSold: false, image: 'https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue', description: 'A special edition poster celebrating the popular blue color variant of the Lamy Safari.' },
-    { id: 'p010', name: 'Lamy Al-Star Black Edition', category: 'Al-Star', price: 34.99, isNew: true, isSold: false, image: 'https://placehold.co/400x250/343a40/ffffff?text=Al-Star+Black', description: 'Showcasing the sleek and sophisticated black edition of the Lamy Al-Star.' },
-    { id: 'p011', name: 'Lamy 2000 Sectional View', category: 'Lamy 2000', price: 49.99, isNew: false, isSold: false, image: 'https://placehold.co/400x250/e83e8c/ffffff?text=2000+View', description: 'An artistic rendering of the internal mechanics of the Lamy 2000 fountain pen.' },
-    { id: 'p012', name: 'Lamy Studio Line Art', category: 'Studio', price: 28.99, isNew: false, isSold: true, image: 'https://placehold.co/400x250/6c757d/ffffff?text=Studio+Line', description: 'Elegant line art focusing on the distinctive silhouette of the Lamy Studio pen.' },
-    { id: 'p013', name: 'Lamy Dialog 3 Poster', category: 'Dialog', price: 45.00, isNew: true, isSold: false, image: 'https://placehold.co/400x250/8a2be2/ffffff?text=Dialog+3', description: 'A dynamic poster highlighting the innovative twist mechanism of the Lamy Dialog 3.' },
-    { id: 'p014', name: 'Lamy Dialog CC Poster', category: 'Dialog CC', price: 42.00, isNew: false, isSold: false, image: 'https://placehold.co/400x250/00ced1/ffffff?text=Dialog+CC', description: 'Capturing the compact elegance and retractable nib of the Lamy Dialog CC.' },
-    { id: 'p015', name: 'Lamy Accent Design', category: 'Accent', price: 31.00, isNew: false, isSold: false, image: 'https://placehold.co/400x250/ff6347/ffffff?text=Accent', description: 'A design-focused poster celebrating the interchangeable grip sections of the Lamy Accent.' },
-    { id: 'p016', name: 'Lamy Pico Minimal', category: 'Pico', price: 25.00, isNew: true, isSold: false, image: 'https://placehold.co/400x250/9acd32/ffffff?text=Pico', description: 'A minimalist poster showcasing the compact and extendable design of the Lamy Pico ballpoint pen.' },
-    { id: 'p017', name: 'Lamy Logo Illustration', category: 'Logo', price: 27.00, isNew: false, isSold: false, image: 'https://placehold.co/400x250/4682b4/ffffff?text=Logo', description: 'An illustrative poster emphasizing the simple yet effective design of the Lamy Logo pen.' },
-    { id: 'p018', name: 'Lamy Ideo Sketch', category: 'Ideo', price: 38.00, isNew: false, isSold: true, image: 'https://placehold.co/400x250/b0c4de/343a40?text=Ideo', description: 'A hand-drawn style sketch poster celebrating the unique, ergonomic triangular body of the Lamy Ideo.' }
+    { id: 'p001', name: 'Lamy Safari Fountain Pen Poster', category: 'Safari', price: 29.99, isNew: true, isSold: false, images: ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmylamy.com.tw%2Fwp-content%2Fuploads%2FLAMY-SAFARI-2024-%25E5%25BE%25A9%25E5%258F%25A4%25E7%25B6%25A0%25E9%2587%2591%25E5%25A4%25BE-DM-%25E6%25AD%25A3%25E6%2596%25B9%25E9%258B%25BC%25E7%25AD%2586-scaled.jpg&f=1&nofb=1&ipt=01ba2c8278f9ef743e1d22dec2f13a6c81131a2d5d6f1e0807d7863f716a98d3', 'https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue+Variant', 'https://placehold.co/400x250/fd7e14/ffffff?text=Safari+Orange+Variant'], description: 'A vibrant tribute to the iconic Lamy Safari, known for its ergonomic design and bold colors.' },
+    { id: 'p002', name: 'Lamy Al-Star Blueprint Poster', category: 'Al-Star', price: 34.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/28a745/ffffff?text=Al-Star+Poster', 'https://placehold.co/400x250/343a40/ffffff?text=Al-Star+Black+Variant'], description: 'An intricate blueprint design showcasing the aluminum body and transparent grip of the Al-Star series.' },
+    { id: 'p003', name: 'Lamy Lx Minimalist Art Print', category: 'Lx', price: 39.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/ffc107/343a40?text=Lx+Poster'], description: 'A sleek and minimalist art print inspired by the elegant and refined Lamy Lx fountain pen.' },
+    { id: 'p004', name: 'Lamy 2000 Exploded View Poster', category: 'Lamy 2000', price: 49.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/dc3545/ffffff?text=2000+Poster', 'https://placehold.co/400x250/e83e8c/ffffff?text=2000+Sectional+View'], description: 'Detailed exploded view of the legendary Lamy 2000, highlighting its innovative design and craftsmanship.' },
+    { id: 'p005', name: 'Lamy Scala Abstract Design', category: 'Scala', price: 32.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/6f42c1/ffffff?text=Scala+Poster'], description: 'An abstract interpretation of the Lamy Scala, focusing on its clean lines and sophisticated form.' },
+    { id: 'p006', name: 'Lamy Studio Geometric Print', category: 'Studio', price: 28.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/fd7e14/ffffff?text=Studio+Poster', 'https://placehold.co/400x250/6c757d/ffffff?text=Studio+Line+Art'], description: 'A modern geometric print inspired by the unique propeller-shaped clip and cylindrical body of the Lamy Studio.' },
+    { id: 'p007', name: 'Lamy Aion Modern Art', category: 'Aion', price: 36.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/20c997/ffffff?text=Aion+Poster'], description: 'Contemporary art piece capturing the seamless, elegant design of the Lamy Aion pen.' },
+    { id: 'p008', name: 'Lamy Cp1 Technical Drawing', category: 'Cp1', price: 31.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/6610f2/ffffff?text=Cp1+Poster'], description: 'A precise technical drawing of the slender and minimalist Lamy CP1 pen.' },
+    { id: 'p009', name: 'Lamy Safari Blue Edition', category: 'Safari', price: 29.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue'], description: 'A special edition poster celebrating the popular blue color variant of the Lamy Safari.' },
+    { id: 'p010', name: 'Lamy Al-Star Black Edition', category: 'Al-Star', price: 34.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/343a40/ffffff?text=Al-Star+Black'], description: 'Showcasing the sleek and sophisticated black edition of the Lamy Al-Star.' },
+    { id: 'p011', name: 'Lamy 2000 Sectional View', category: 'Lamy 2000', price: 49.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/e83e8c/ffffff?text=2000+View'], description: 'An artistic rendering of the internal mechanics of the Lamy 2000 fountain pen.' },
+    { id: 'p012', name: 'Lamy Studio Line Art', category: 'Studio', price: 28.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/6c757d/ffffff?text=Studio+Line'], description: 'Elegant line art focusing on the distinctive silhouette of the Lamy Studio pen.' },
+    { id: 'p013', name: 'Lamy Dialog 3 Poster', category: 'Dialog', price: 45.00, isNew: true, isSold: false, images: ['https://placehold.co/400x250/8a2be2/ffffff?text=Dialog+3', 'https://placehold.co/400x250/00ced1/ffffff?text=Dialog+3+Angle'], description: 'A dynamic poster highlighting the innovative twist mechanism of the Lamy Dialog 3.' },
+    { id: 'p014', name: 'Lamy Dialog CC Poster', category: 'Dialog CC', price: 42.00, isNew: false, isSold: false, images: ['https://placehold.co/400x250/00ced1/ffffff?text=Dialog+CC'], description: 'Capturing the compact elegance and retractable nib of the Lamy Dialog CC.' },
+    { id: 'p015', name: 'Lamy Accent Design', category: 'Accent', price: 31.00, isNew: false, isSold: false, images: ['https://placehold.co/400x250/ff6347/ffffff?text=Accent'], description: 'A design-focused poster celebrating the interchangeable grip sections of the Lamy Accent.' },
+    { id: 'p016', name: 'Lamy Pico Minimal', category: 'Pico', price: 25.00, isNew: true, isSold: false, images: ['https://placehold.co/400x250/9acd32/ffffff?text=Pico'], description: 'A minimalist poster showcasing the compact and extendable design of the Lamy Pico ballpoint pen.' },
+    { id: 'p017', name: 'Lamy Logo Illustration', category: 'Logo', price: 27.00, isNew: false, isSold: false, images: ['https://placehold.co/400x250/4682b4/ffffff?text=Logo'], description: 'An illustrative poster emphasizing the simple yet effective design of the Lamy Logo pen.' },
+    { id: 'p018', name: 'Lamy Ideo Sketch', category: 'Ideo', price: 38.00, isNew: false, isSold: true, images: ['https://placehold.co/400x250/b0c4de/343a40?text=Ideo'], description: 'A hand-drawn style sketch poster celebrating the unique, ergonomic triangular body of the Lamy Ideo.' }
 ];
 
 // Global cart array
@@ -43,7 +45,6 @@ const continueShoppingBtn = document.getElementById('continue-shopping-btn');
 
 // Get navbar links
 const homeLink = document.getElementById('home-link');
-const shopPostersLink = document.getElementById('shop-posters-link');
 const cartLinkDesktop = document.getElementById('cart-link-desktop');
 const cartLinkMobile = document.getElementById('cart-link-mobile');
 
@@ -85,7 +86,8 @@ const sendContactEmailBtn = document.getElementById('sendContactEmailBtn');
 // Get image modal elements
 const imageModalElement = document.getElementById('imageModal');
 const imageModal = new bootstrap.Modal(imageModalElement);
-const modalImage = document.getElementById('modalImage');
+const modalCarouselIndicators = document.getElementById('modalCarouselIndicators');
+const modalCarouselInner = document.getElementById('modalCarouselInner');
 const imageModalLabel = document.getElementById('imageModalLabel');
 const modalAddToCartBtn = document.getElementById('modalAddToCartBtn'); // New button
 
@@ -171,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 detailsContainer.style.flexGrow = '1';
 
                 const img = document.createElement('img');
-                img.src = item.image;
+                img.src = item.images[0]; // Display first image in cart
                 img.alt = item.name;
                 detailsContainer.appendChild(img);
 
@@ -215,12 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if the item is already in the cart
         if (cart.some(item => item.id === product.id)) {
             showMessageBox('Already in Cart', `${product.name} (Item #${product.itemNumber}) is already in your cart.`);
+            console.log(`Attempted to add ${product.name} (ID: ${product.id}, Item #: ${product.itemNumber}) but it's already in cart.`);
             return;
         }
 
         cart.push(product);
         updateCartDisplay();
-        // Removed showMessageBox('Item Added!', ...) as per user request
         console.log(`Added ${product.name} (ID: ${product.id}, Item #: ${product.itemNumber}) to cart.`);
     }
 
@@ -363,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function shareOnPinterest(product) {
         const shareUrl = getProductShareUrl(product.id);
-        const media = product.image; // Use the product's image URL
+        const media = product.images[0]; // Use the product's first image URL
         const description = encodeURIComponent(`${product.name} - ${product.description}`);
         window.open(`https://pinterest.com/pin/create/button/?url=${shareUrl}&media=${media}&description=${description}`, '_blank');
     }
@@ -413,8 +415,42 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function showImageModal(product) {
         currentProductInModal = product; // Store the product globally
-        modalImage.src = product.image;
         imageModalLabel.textContent = product.name;
+
+        // Clear previous carousel content
+        modalCarouselIndicators.innerHTML = '';
+        modalCarouselInner.innerHTML = '';
+
+        // Dynamically create carousel items and indicators
+        product.images.forEach((imageSrc, index) => {
+            const indicator = document.createElement('button');
+            indicator.setAttribute('type', 'button');
+            indicator.setAttribute('data-bs-target', '#modalImageCarousel');
+            indicator.setAttribute('data-bs-slide-to', index);
+            indicator.setAttribute('aria-label', `Slide ${index + 1}`);
+            if (index === 0) {
+                indicator.classList.add('active');
+                indicator.setAttribute('aria-current', 'true');
+            }
+            modalCarouselIndicators.appendChild(indicator);
+
+            const carouselItem = document.createElement('div');
+            carouselItem.classList.add('carousel-item', 'h-100');
+            if (index === 0) {
+                carouselItem.classList.add('active');
+            }
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.className = 'd-block w-100 h-100'; // Make image fill carousel item
+            img.alt = product.name;
+            carouselItem.appendChild(img);
+            modalCarouselInner.appendChild(carouselItem);
+        });
+
+        // Initialize the Bootstrap Carousel for the modal
+        const modalCarousel = new bootstrap.Carousel(document.getElementById('modalImageCarousel'), {
+            interval: false // Disable auto-sliding for manual control
+        });
 
         // Update the Add to Cart button state based on the product
         updateModalAddToCartButton(product);
@@ -468,38 +504,80 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardDiv.appendChild(soldLabel);
             }
 
-            // Clickable area for image and title
-            const clickableArea = document.createElement('a');
-            clickableArea.href = '#'; // Prevent default navigation
-            clickableArea.className = 'clickable-area';
-            clickableArea.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent default link behavior
-                showImageModal(product); // Pass the entire product object
+            // Create the carousel for the tile
+            const tileCarouselId = `tileCarousel-${product.id}`;
+            const tileCarouselDiv = document.createElement('div');
+            tileCarouselDiv.id = tileCarouselId;
+            tileCarouselDiv.className = 'carousel slide tile-carousel clickable-image'; // Added clickable-image class
+            tileCarouselDiv.setAttribute('data-bs-interval', 'false'); // Disable auto-slide
+            // Add event listener directly to the carousel for opening the modal
+            tileCarouselDiv.addEventListener('click', (event) => {
+                event.preventDefault();
+                showImageModal(product);
             });
 
-            const img = document.createElement('img');
-            img.src = product.image;
-            img.className = 'card-img-top';
-            img.alt = product.name;
-            clickableArea.appendChild(img);
 
+            const carouselInner = document.createElement('div');
+            carouselInner.className = 'carousel-inner';
+
+            product.images.forEach((imageSrc, imgIndex) => {
+                const carouselItem = document.createElement('div');
+                carouselItem.className = `carousel-item ${imgIndex === 0 ? 'active' : ''}`;
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.className = 'd-block w-100';
+                img.alt = `${product.name} image ${imgIndex + 1}`;
+                carouselItem.appendChild(img);
+                carouselInner.appendChild(carouselItem);
+            });
+
+            tileCarouselDiv.appendChild(carouselInner);
+
+            // Add carousel controls if more than one image
+            if (product.images.length > 1) {
+                const prevButton = document.createElement('button');
+                prevButton.className = 'carousel-control-prev';
+                prevButton.type = 'button';
+                prevButton.setAttribute('data-bs-target', `#${tileCarouselId}`);
+                prevButton.setAttribute('data-bs-slide', 'prev');
+                prevButton.innerHTML = '<span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span>';
+                tileCarouselDiv.appendChild(prevButton);
+
+                const nextButton = document.createElement('button');
+                nextButton.className = 'carousel-control-next';
+                nextButton.type = 'button';
+                nextButton.setAttribute('data-bs-target', `#${tileCarouselId}`);
+                nextButton.setAttribute('data-bs-slide', 'next');
+                nextButton.innerHTML = '<span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span>';
+                tileCarouselDiv.appendChild(nextButton);
+            }
+
+            cardDiv.appendChild(tileCarouselDiv); // Add the carousel to the card
+
+            // Card body content
             const cardBody = document.createElement('div');
             cardBody.className = 'card-body d-flex flex-column';
 
+            const titleLink = document.createElement('a'); // New clickable link for title
+            titleLink.href = '#';
+            titleLink.className = 'clickable-title';
+            titleLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                showImageModal(product);
+            });
+
             const title = document.createElement('h5');
             title.className = 'card-title';
-            // Append the item number to the title without parentheses and with a specific class for styling
             title.innerHTML = `${product.name} <span class="item-number-color">Item #${itemNumber}</span>`;
-            clickableArea.appendChild(title); // Make title part of clickable area
+            titleLink.appendChild(title); // Append title to the new link
+            cardBody.appendChild(titleLink); // Append the link to cardBody
 
-            cardDiv.appendChild(clickableArea); // Add the clickable area to the card
 
             const category = document.createElement('p');
             category.className = 'card-text';
             category.textContent = `Category: ${product.category}`;
             cardBody.appendChild(category);
 
-            // Add Description title and content
             const descriptionTitle = document.createElement('p');
             descriptionTitle.className = 'card-text fw-bold mb-0';
             descriptionTitle.textContent = 'Description:';
@@ -510,25 +588,24 @@ document.addEventListener('DOMContentLoaded', () => {
             descriptionContent.textContent = product.description;
             cardBody.appendChild(descriptionContent);
 
-
             const price = document.createElement('p');
-            price.className = 'price mt-auto'; // mt-auto to push price and button to bottom
+            price.className = 'price mt-auto';
             price.textContent = `$${product.price.toFixed(2)}`;
             cardBody.appendChild(price);
 
-            // Add to Cart button
             if (!product.isSold) {
                 const button = document.createElement('button');
                 button.className = 'btn btn-add-to-cart w-100 mt-2';
-                button.textContent = isInCart ? 'Added to Cart' : 'Add to Cart'; // Change text if in cart
-                button.disabled = isInCart; // Disable if in cart
-                button.setAttribute('data-product-id', product.id); // Store product ID
+                button.textContent = isInCart ? 'Added to Cart' : 'Add to Cart';
+                button.disabled = isInCart;
+                button.setAttribute('data-product-id', product.id);
                 button.addEventListener('click', (event) => {
-                    // Prevent event from bubbling up to card click if any
-                    event.stopPropagation();
-                    addToCart(product); // Call addToCart function
+                    event.stopPropagation(); // Ensure this click doesn't propagate
+                    addToCart(product);
+                    console.log(`Add to Cart button clicked for product: ${product.name}`); // Added log
                 });
                 cardBody.appendChild(button);
+                console.log(`Button for ${product.name} created and listener attached. Initial disabled: ${isInCart}`); // Added log
             } else {
                 const soldOutText = document.createElement('p');
                 soldOutText.className = 'text-danger fw-bold text-center mt-2';
@@ -536,7 +613,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardBody.appendChild(soldOutText);
             }
 
-            // Social Media Share Icons
             const socialShareContainer = document.createElement('div');
             socialShareContainer.className = 'social-share-container';
 
@@ -582,10 +658,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cardBody.appendChild(socialShareContainer);
 
-
             cardDiv.appendChild(cardBody);
             colDiv.appendChild(cardDiv);
             posterGrid.appendChild(colDiv);
+
+            // Initialize the Bootstrap Carousel for the tile after it's added to the DOM
+            // This is crucial for the carousel to function correctly.
+            if (product.images.length > 1) {
+                new bootstrap.Carousel(document.getElementById(tileCarouselId), {
+                    interval: false // Disable auto-sliding for manual control
+                });
+            }
         });
 
         // Update active state of filter buttons
@@ -643,6 +726,9 @@ document.addEventListener('DOMContentLoaded', () => {
             heroSection.style.display = 'block';
             postersSection.style.display = 'block';
         } else if (sectionToShow === 'shop') {
+            // This case is now effectively 'home' since 'Shop Posters' is removed
+            // If you want to show only posters without the carousel, you'd adjust this.
+            heroSection.style.display = 'none'; // Hide carousel if only showing shop
             postersSection.style.display = 'block';
             renderPosters(currentFilter); // Re-render posters when navigating to shop
         } else if (sectionToShow === 'cart') {
@@ -655,11 +741,6 @@ document.addEventListener('DOMContentLoaded', () => {
     homeLink.addEventListener('click', (e) => {
         e.preventDefault();
         showSection('home');
-    });
-
-    shopPostersLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection('shop');
     });
 
     // Updated cart link event listeners
@@ -687,7 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener for "Continue Shopping" button on cart page
     continueShoppingBtn.addEventListener('click', () => {
-        showSection('shop');
+        showSection('home'); // Changed to 'home' since 'Shop Posters' is removed
     });
 
     // Add event listener for the shipping address form submission
