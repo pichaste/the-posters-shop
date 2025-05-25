@@ -12,19 +12,10 @@ body {
 }
 .navbar-brand {
     color: #007bff !important; /* Original primary color for brand */
+    font-weight: bold; /* Ensure the text title is bold */
+    font-size: 1.5rem; /* Adjust font size as needed */
 }
-.navbar-brand img {
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 0.5rem;
-}
-/* Adjusted height for the new logo to ensure it fits well */
-.navbar-brand .logo-img {
-    height: 40px; /* Adjusted height for the new logo (was 50px) */
-    width: auto; /* Maintain aspect ratio */
-    margin-right: 0; /* Remove margin if text is gone */
-    border-radius: 0; /* No border-radius for the logo itself */
-}
+/* Removed .navbar-brand img and .navbar-brand .logo-img styles as they are no longer needed */
 
 .navbar-nav .nav-link {
     color: rgba(0,0,0,.55) !important; /* Original text color for nav links */
@@ -332,6 +323,7 @@ body {
 }
 
 /* Styles for clickable image/title */
+/* Removed .poster-card .clickable-area as it's no longer a full overlay */
 .poster-card .clickable-image,
 .poster-card .clickable-title {
     cursor: pointer;
