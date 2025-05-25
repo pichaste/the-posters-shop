@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `City, State, Zip: ${city}, ${state} ${zipCode}\n\n` +
             `***Please ensure that Paypal has your correct delivery address - Shipping labels are generated from information you provide.***`
         );
-        const mailtoUrl = `mailto:your-email@example.com?subject=${encodeURIComponent(`Purchase Inquiry - Posters Cart - ${fullName}`)}&body=${body}`;
+        const mailtoUrl = `mailto:inkeogram@gmail.com?subject=${encodeURIComponent(`Purchase Inquiry - Posters Cart - ${fullName}`)}&body=${body}`;
 
         window.location.href = mailtoUrl; // Attempt to open email client
 
