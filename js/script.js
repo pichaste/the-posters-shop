@@ -1,6 +1,6 @@
 // Data for Lamy products
 const lamyProducts = [
-    { id: 'p001', name: 'Lamy Safari Fountain Pen Poster', category: 'Safari', price: 29.99, isNew: true, isSold: false, images: ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmylamy.com.tw%2Fwp-content%2Fuploads%2FLAMY-SAFARI-2024-%25E5%25BE%25A9%25E5%258F%25A4%25E7%25B6%25A0%25E9%2587%2591%25E5%25A4%25B9-DM-%25E6%25AD%25A3%25E6%2596%25B9%25E9%258B%25BC%25E7%25AD%2586-scaled.jpg&f=1&nofb=1&ipt=01ba2c8278f9ef743e1d22dec2f13a6c81131a2d5d6f1e0807d7863f716a98d3', 'https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue+Variant', 'https://placehold.co/400x250/fd7e14/ffffff?text=Safari+Orange+Variant'], description: 'A vibrant tribute to the iconic Lamy Safari, known for its ergonomic design and bold colors.' },
+    { id: 'p001', name: 'Lamy Safari Fountain Pen Poster', category: 'Safari', price: 29.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/007bff/ffffff?text=Lamy+Safari+Poster', 'https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue+Variant', 'https://placehold.co/400x250/fd7e14/ffffff?text=Safari+Orange+Variant'], description: 'A vibrant tribute to the iconic Lamy Safari, known for its ergonomic design and bold colors.' },
     { id: 'p002', name: 'Lamy Al-Star Blueprint Poster', category: 'Al-Star', price: 34.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/28a745/ffffff?text=Al-Star+Poster', 'https://placehold.co/400x250/343a40/ffffff?text=Al-Star+Black+Variant'], description: 'An intricate blueprint design showcasing the aluminum body and transparent grip of the Al-Star series.' },
     { id: 'p003', name: 'Lamy Lx Minimalist Art Print', category: 'Lx', price: 39.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/ffc107/343a40?text=Lx+Poster'], description: 'A sleek and minimalist art print inspired by the elegant and refined Lamy Lx fountain pen.' },
     { id: 'p004', name: 'Lamy 2000 Exploded View Poster', category: 'Lamy 2000', price: 49.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/dc3545/ffffff?text=2000+Poster', 'https://placehold.co/400x250/e83e8c/ffffff?text=2000+Sectional+View'], description: 'Detailed exploded view of the legendary Lamy 2000, highlighting its innovative design and craftsmanship.' },
@@ -734,6 +734,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
+     * Initializes the filter buttons dynamically.
+     */
+    function initializeFilterButtons() {
+        // Get unique categories and sort them, then prepend 'All'
+        const categories = ['All', ...new Set(lamyProducts.map(p => p.category))].sort((a, b) => {
+            if (a === 'All') return -1; // 'All' comes first
+            if (b === 'All') return 1;
+            return a.localeCompare(b); // Sort others alphabetically
+        });
+
+        filterButtonsContainer.innerHTML = ''; // Clear existing buttons
+
+        categories.forEach(category => {
+            const button = document.createElement('button');
+            button.className = 'btn btn-outline-primary';
+            button.textContent = category;
+            button.dataset.filter = category; // Store category in data-filter attribute
+
+            // Add specific styling for the "All" button
+            if (category === 'All') {
+                button.classList.add('all-filter-button'); // New class for "All" button
+            }
+
+            button.addEventListener('click', () => {
+                currentFilter = category; // Update current filter
+                renderPosters(currentFilter);
+            });
+            filterButtonsContainer.appendChild(button);
+        });
+    }
+
+    /**
      * Manages section visibility.
      * @param {string} sectionToShow - The ID of the section to show.
      */
@@ -769,39 +801,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         console.log(`[showSection] Final display styles: heroSection=${heroSection.style.display}, postersSection=${postersSection.style.display}, cartPage=${cartPage.style.display}`);
     }
-
-    /**
-     * Initializes the filter buttons dynamically.
-     */
-    function initializeFilterButtons() {
-        // Get unique categories and sort them, then prepend 'All'
-        const categories = ['All', ...new Set(lamyProducts.map(p => p.category))].sort((a, b) => {
-            if (a === 'All') return -1; // 'All' comes first
-            if (b === 'All') return 1;
-            return a.localeCompare(b); // Sort others alphabetically
-        });
-
-        filterButtonsContainer.innerHTML = ''; // Clear existing buttons
-
-        categories.forEach(category => {
-            const button = document.createElement('button');
-            button.className = 'btn btn-outline-primary';
-            button.textContent = category;
-            button.dataset.filter = category; // Store category in data-filter attribute
-
-            // Add specific styling for the "All" button
-            if (category === 'All') {
-                button.classList.add('all-filter-button'); // New class for "All" button
-            }
-
-            button.addEventListener('click', () => {
-                currentFilter = category; // Update current filter
-                renderPosters(currentFilter);
-            });
-            filterButtonsContainer.appendChild(button);
-        });
-    }
-
 
     // Add event listeners for navigation
     homeLink.addEventListener('click', (e) => {
