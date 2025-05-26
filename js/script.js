@@ -1,6 +1,8 @@
+// script.js content starts here
+
 // Data for Lamy products
 const lamyProducts = [
-    { id: 'p001', name: 'Lamy Safari Fountain Pen Poster', category: 'Safari', price: 29.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/007bff/ffffff?text=Lamy+Safari+Poster', 'https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue+Variant', 'https://placehold.co/400x250/fd7e14/ffffff?text=Safari+Orange+Variant'], description: 'A vibrant tribute to the iconic Lamy Safari, known for its ergonomic design and bold colors.' },
+    { id: 'p001', name: 'Lamy Safari Fountain Pen Poster', category: 'Safari', price: 29.99, isNew: true, isSold: false, images: ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmylamy.com.tw%2Fwp-content%2Fuploads%2FLAMY-SAFARI-2024-%25E5%25BE%25A9%25E5%258F%25A4%25E7%25B6%25A0%25E9%2587%2591%25E5%25A4%25BE-DM-%25E6%25AD%25A3%25E6%2596%25B9%25E9%258B%25BC%25E7%25AD%2586-scaled.jpg&f=1&nofb=1&ipt=01ba2c8278f9ef743e1d22dec2f13a6c81131a2d5d6f1e0807d7863f716a98d3', 'https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue+Variant', 'https://placehold.co/400x250/fd7e14/ffffff?text=Safari+Orange+Variant'], description: 'A vibrant tribute to the iconic Lamy Safari, known for its ergonomic design and bold colors.' },
     { id: 'p002', name: 'Lamy Al-Star Blueprint Poster', category: 'Al-Star', price: 34.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/28a745/ffffff?text=Al-Star+Poster', 'https://placehold.co/400x250/343a40/ffffff?text=Al-Star+Black+Variant'], description: 'An intricate blueprint design showcasing the aluminum body and transparent grip of the Al-Star series.' },
     { id: 'p003', name: 'Lamy Lx Minimalist Art Print', category: 'Lx', price: 39.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/ffc107/343a40?text=Lx+Poster'], description: 'A sleek and minimalist art print inspired by the elegant and refined Lamy Lx fountain pen.' },
     { id: 'p004', name: 'Lamy 2000 Exploded View Poster', category: 'Lamy 2000', price: 49.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/dc3545/ffffff?text=2000+Poster', 'https://placehold.co/400x250/e83e8c/ffffff?text=2000+Sectional+View'], description: 'Detailed exploded view of the legendary Lamy 2000, highlighting its innovative design and craftsmanship.' },
@@ -8,6 +10,7 @@ const lamyProducts = [
     { id: 'p006', name: 'Lamy Studio Geometric Print', category: 'Studio', price: 28.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/fd7e14/ffffff?text=Studio+Poster', 'https://placehold.co/400x250/6c757d/ffffff?text=Studio+Line+Art'], description: 'A modern geometric print inspired by the unique propeller-shaped clip and cylindrical body of the Lamy Studio.' },
     { id: 'p007', name: 'Lamy Aion Modern Art', category: 'Aion', price: 36.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/20c997/ffffff?text=Aion+Poster'], description: 'Contemporary art piece capturing the seamless, elegant design of the Lamy Aion pen.' },
     { id: 'p008', name: 'Lamy Cp1 Technical Drawing', category: 'Cp1', price: 31.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/6610f2/ffffff?text=Cp1+Poster'], description: 'A precise technical drawing of the slender and minimalist Lamy CP1 pen.' },
+    { id: 'p009', name: 'Lamy Safari Blue Edition', category: 'Safari', price: 29.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue'], description: 'A special edition poster celebrating the popular blue color variant of the Lamy Safari.' },
     { id: 'p010', name: 'Lamy Al-Star Black Edition', category: 'Al-Star', price: 34.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/343a40/ffffff?text=Al-Star+Black'], description: 'Showcasing the sleek and sophisticated black edition of the Lamy Al-Star.' },
     { id: 'p011', name: 'Lamy 2000 Sectional View', category: 'Lamy 2000', price: 49.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/e83e8c/ffffff?text=2000+View'], description: 'An artistic rendering of the internal mechanics of the Lamy 2000 fountain pen.' },
     { id: 'p012', name: 'Lamy Studio Line Art', category: 'Studio', price: 28.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/6c757d/ffffff?text=Studio+Line'], description: 'Elegant line art focusing on the distinctive silhouette of the Lamy Studio pen.' },
@@ -23,73 +26,76 @@ const lamyProducts = [
 let cart = [];
 let currentFilter = 'All'; // Track the currently active filter
 
-// Get main section elements (moved inside DOMContentLoaded for safer access)
-let heroSection;
-let postersSection;
-let cartPage;
+// Get main section elements
+const heroSection = document.getElementById('hero-section');
+const postersSection = document.getElementById('posters-section');
+const cartPage = document.getElementById('cart-page');
 
-// Get poster grid container (moved inside DOMContentLoaded)
-let posterGrid;
-let filterButtonsContainer;
+// Get poster grid container
+const posterGrid = document.getElementById('poster-grid');
+const filterButtonsContainer = document.getElementById('filter-buttons');
 
-// Get cart page elements (moved inside DOMContentLoaded)
-let cartCountSpanDesktop;
-let cartCountSpanMobile;
-let cartItemsDiv;
-let cartTotalSpan;
-let proceedToCheckoutBtn;
-let continueShoppingBtn;
+// Get cart page elements
+const cartCountSpanDesktop = document.getElementById('cart-count-desktop');
+const cartCountSpanMobile = document.getElementById('cart-count-mobile');
+const cartItemsDiv = document.getElementById('cart-items');
+const cartTotalSpan = document.getElementById('cart-total');
+const proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
+const continueShoppingBtn = document.getElementById('continue-shopping-btn');
 
-// Get navbar links (moved inside DOMContentLoaded)
-let homeLink;
-let cartLinkDesktop;
-let cartLinkMobile;
+// Get navbar links
+const homeLink = document.getElementById('home-link');
+const cartLinkDesktop = document.getElementById('cart-link-desktop');
+const cartLinkMobile = document.getElementById('cart-link-mobile');
 
-// Get message box elements (for "Item Added" notification) (moved inside DOMContentLoaded)
-let messageBoxOverlay;
-let messageBoxTitle;
-let messageBoxContent;
-let messageBoxCloseBtn;
+// Get message box elements (for "Item Added" notification)
+const messageBoxOverlay = document.getElementById('messageBoxOverlay');
+const messageBoxTitle = document.getElementById('messageBoxTitle');
+const messageBoxContent = document.getElementById('messageBoxContent');
+const messageBoxCloseBtn = document.getElementById('messageBoxCloseBtn');
 
-// Get mailto modal elements (moved inside DOMContentLoaded)
-let mailtoModalElement;
-let mailtoModal;
+// Get mailto modal elements
+const mailtoModalElement = document.getElementById('mailtoModal');
+let mailtoModal; // Declare the variable here
 
-// Elements for shipping address form (moved inside DOMContentLoaded)
-let shippingAddressForm;
-let fullNameInput;
-let addressLine1Input;
-let addressLine2Input;
-let cityInput;
-let stateInput;
-let zipCodeInput;
-let sendEmailInquiryBtn;
+// Elements for shipping address form
+const shippingAddressForm = document.getElementById('shippingAddressForm');
+const fullNameInput = document.getElementById('fullName');
+const addressLine1Input = document.getElementById('addressLine1');
+const addressLine2Input = document.getElementById('addressLine2');
+const cityInput = document.getElementById('city');
+const stateInput = document.getElementById('state');
+const zipCodeInput = document.getElementById('zipCode');
+const sendEmailInquiryBtn = document.getElementById('sendEmailInquiryBtn');
 
-// Elements for the new confirmation state in mailtoModal (moved inside DOMContentLoaded)
-let shippingFormContent;
-let emailSentConfirmation;
-let confirmEmailSentBtn;
+// Elements for the new confirmation state in mailtoModal
+const shippingFormContent = document.getElementById('shippingFormContent');
+const emailSentConfirmation = document.getElementById('emailSentConfirmation');
+const confirmEmailSentBtn = document.getElementById('confirmEmailSentBtn');
 
-// New elements for Contact Modal (moved inside DOMContentLoaded)
-let contactModalElement;
-let contactModal;
-let contactForm;
-let contactNameInput;
-let contactEmailInput;
-let contactSubjectInput;
-let contactMessageTextarea;
-let sendContactEmailBtn;
+// New elements for Contact Modal
+const contactModalElement = document.getElementById('contactModal');
+let contactModal; // Declare the variable here
 
-// Get image modal elements (moved inside DOMContentLoaded)
-let imageModalElement;
-let imageModal;
-let modalCarouselIndicators;
-let modalCarouselInner;
-let imageModalLabel;
-let modalAddToCartBtn;
+const contactForm = document.getElementById('contactForm');
+const contactNameInput = document.getElementById('contactName');
+const contactEmailInput = document.getElementById('contactEmail');
+const contactSubjectInput = document.getElementById('contactSubject');
+const contactMessageTextarea = document.getElementById('contactMessage');
+const sendContactEmailBtn = document.getElementById('sendContactEmailBtn');
+
+// Get image modal elements
+const imageModalElement = document.getElementById('imageModal');
+const imageModal = new bootstrap.Modal(imageModalElement);
+const modalImage = document.getElementById('modalImage');
+const imageModalLabel = document.getElementById('imageModalLabel');
+const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
 
 // Variable to hold the product currently displayed in the image modal
 let currentProductInModal = null;
+
+// Scroll to Top Button element
+let scrollToTopBtn;
 
 // Obfuscated email address for contact form
 // Example: 'contact@example.com' -> char codes
@@ -99,61 +105,11 @@ const recipientEmail = String.fromCharCode(...obfuscatedEmailParts);
 
 // Initialize carousel and render posters when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Assign elements after DOM is loaded
-    heroSection = document.getElementById('hero-section');
-    postersSection = document.getElementById('posters-section');
-    cartPage = document.getElementById('cart-page');
-
-    posterGrid = document.getElementById('poster-grid');
-    filterButtonsContainer = document.getElementById('filter-buttons');
-
-    cartCountSpanDesktop = document.getElementById('cart-count-desktop');
-    cartCountSpanMobile = document.getElementById('cart-count-mobile');
-    cartItemsDiv = document.getElementById('cart-items');
-    cartTotalSpan = document.getElementById('cart-total');
-    proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
-    continueShoppingBtn = document.getElementById('continue-shopping-btn');
-
-    homeLink = document.getElementById('home-link');
-    cartLinkDesktop = document.getElementById('cart-link-desktop');
-    cartLinkMobile = document.getElementById('cart-link-mobile');
-
-    messageBoxOverlay = document.getElementById('messageBoxOverlay');
-    messageBoxTitle = document.getElementById('messageBoxTitle');
-    messageBoxContent = document.getElementById('messageBoxContent');
-    messageBoxCloseBtn = document.getElementById('messageBoxCloseBtn');
-
-    mailtoModalElement = document.getElementById('mailtoModal');
+    // Initialize Bootstrap Modals
     mailtoModal = new bootstrap.Modal(mailtoModalElement);
-
-    shippingAddressForm = document.getElementById('shippingAddressForm');
-    fullNameInput = document.getElementById('fullName');
-    addressLine1Input = document.getElementById('addressLine1');
-    addressLine2Input = document.getElementById('addressLine2');
-    cityInput = document.getElementById('city');
-    stateInput = document.getElementById('state');
-    zipCodeInput = document.getElementById('zipCode');
-    sendEmailInquiryBtn = document.getElementById('sendEmailInquiryBtn');
-
-    shippingFormContent = document.getElementById('shippingFormContent');
-    emailSentConfirmation = document.getElementById('emailSentConfirmation');
-    confirmEmailSentBtn = document.getElementById('confirmEmailSentBtn');
-
-    contactModalElement = document.getElementById('contactModal');
     contactModal = new bootstrap.Modal(contactModalElement);
-    contactForm = document.getElementById('contactForm');
-    contactNameInput = document.getElementById('contactName');
-    contactEmailInput = document.getElementById('contactEmail');
-    contactSubjectInput = document.getElementById('contactSubject');
-    contactMessageTextarea = document.getElementById('contactMessage');
-    sendContactEmailBtn = document.getElementById('sendContactEmailBtn');
+    scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
-    imageModalElement = document.getElementById('imageModal');
-    imageModal = new bootstrap.Modal(imageModalElement);
-    modalCarouselIndicators = document.getElementById('modalCarouselIndicators');
-    modalCarouselInner = document.getElementById('modalCarouselInner');
-    imageModalLabel = document.getElementById('imageModalLabel');
-    modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
 
     /**
      * Displays a custom message box.
@@ -318,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `City, State, Zip: ${city}, ${state} ${zipCode}\n\n` +
             `***Please ensure that Paypal has your correct delivery address - Shipping labels are generated from information you provide.***`
         );
-        const mailtoUrl = `mailto:inkeogram@gmail.com?subject=${encodeURIComponent(`Purchase Inquiry - Posters Cart - ${fullName}`)}&body=${body}`;
+        const mailtoUrl = `mailto:your-email@example.com?subject=${encodeURIComponent(`Purchase Inquiry - Posters Cart - ${fullName}`)}&body=${body}`;
 
         window.location.href = mailtoUrl; // Attempt to open email client
 
@@ -334,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function confirmEmailSentAndClearCart() {
         cart = []; // Clear the cart
         updateCartDisplay(); // Update the display to reflect the empty cart
-        mailtoModal.hide(); // Close the modal
+        mailtoModal.hide(); // Use the initialized modal instance
         showMessageBox('Purchase Inquiry Sent!', 'Your inquiry has been sent. We will get back to you as soon as we can.');
     }
 
@@ -362,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear form and close modal after a short delay
         setTimeout(() => {
             contactForm.reset();
-            contactModal.hide();
+            contactModal.hide(); // Use the initialized modal instance
             showMessageBox('Message Sent!', 'Thank you for your message. We will get back to you shortly.');
         }, 100);
     }
@@ -375,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
         shippingAddressForm.reset();
         shippingFormContent.style.display = 'block';
         emailSentConfirmation.style.display = 'none';
-        mailtoModal.show();
+        mailtoModal.show(); // Use the initialized modal instance
     }
 
     /**
@@ -467,42 +423,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function showImageModal(product) {
         currentProductInModal = product; // Store the product globally
+        modalImage.src = product.images[0]; // Display first image in modal
         imageModalLabel.textContent = product.name;
-
-        // Clear previous carousel content
-        modalCarouselIndicators.innerHTML = '';
-        modalCarouselInner.innerHTML = '';
-
-        // Dynamically create carousel items and indicators
-        product.images.forEach((imageSrc, index) => {
-            const indicator = document.createElement('button');
-            indicator.setAttribute('type', 'button');
-            indicator.setAttribute('data-bs-target', '#modalImageCarousel');
-            indicator.setAttribute('data-bs-slide-to', index);
-            indicator.setAttribute('aria-label', `Slide ${index + 1}`);
-            if (index === 0) {
-                indicator.classList.add('active');
-                indicator.setAttribute('aria-current', 'true');
-            }
-            modalCarouselIndicators.appendChild(indicator);
-
-            const carouselItem = document.createElement('div');
-            carouselItem.classList.add('carousel-item', 'h-100');
-            if (index === 0) {
-                carouselItem.classList.add('active');
-            }
-            const img = document.createElement('img');
-            img.src = imageSrc;
-            img.className = 'd-block w-100 h-100'; // Make image fill carousel item
-            img.alt = product.name;
-            carouselItem.appendChild(img);
-            modalCarouselInner.appendChild(carouselItem);
-        });
-
-        // Initialize the Bootstrap Carousel for the modal
-        const modalCarousel = new bootstrap.Carousel(document.getElementById('modalImageCarousel'), {
-            interval: false // Disable auto-sliding for manual control
-        });
 
         // Update the Add to Cart button state based on the product
         updateModalAddToCartButton(product);
@@ -556,80 +478,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardDiv.appendChild(soldLabel);
             }
 
-            // Create the carousel for the tile
-            const tileCarouselId = `tileCarousel-${product.id}`;
-            const tileCarouselDiv = document.createElement('div');
-            tileCarouselDiv.id = tileCarouselId;
-            tileCarouselDiv.className = 'carousel slide tile-carousel clickable-image'; // Added clickable-image class
-            tileCarouselDiv.setAttribute('data-bs-interval', 'false'); // Disable auto-slide
-            // Add event listener directly to the carousel for opening the modal
-            tileCarouselDiv.addEventListener('click', (event) => {
-                event.preventDefault();
-                showImageModal(product);
+            // Clickable area for image and title
+            const clickableArea = document.createElement('a');
+            clickableArea.href = '#'; // Prevent default navigation
+            clickableArea.className = 'clickable-area';
+            clickableArea.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                showImageModal(product); // Pass the entire product object
             });
 
+            const img = document.createElement('img');
+            img.src = product.images[0]; // Use the first image from the array
+            img.className = 'card-img-top';
+            img.alt = product.name;
+            clickableArea.appendChild(img);
 
-            const carouselInner = document.createElement('div');
-            carouselInner.className = 'carousel-inner';
-
-            product.images.forEach((imageSrc, imgIndex) => {
-                const carouselItem = document.createElement('div');
-                carouselItem.className = `carousel-item ${imgIndex === 0 ? 'active' : ''}`;
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.className = 'd-block w-100';
-                img.alt = `${product.name} image ${imgIndex + 1}`;
-                carouselItem.appendChild(img);
-                carouselInner.appendChild(carouselItem);
-            });
-
-            tileCarouselDiv.appendChild(carouselInner);
-
-            // Add carousel controls if more than one image
-            if (product.images.length > 1) {
-                const prevButton = document.createElement('button');
-                prevButton.className = 'carousel-control-prev';
-                prevButton.type = 'button';
-                prevButton.setAttribute('data-bs-target', `#${tileCarouselId}`);
-                prevButton.setAttribute('data-bs-slide', 'prev');
-                prevButton.innerHTML = '<span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span>';
-                tileCarouselDiv.appendChild(prevButton);
-
-                const nextButton = document.createElement('button');
-                nextButton.className = 'carousel-control-next';
-                nextButton.type = 'button';
-                nextButton.setAttribute('data-bs-target', `#${tileCarouselId}`);
-                nextButton.setAttribute('data-bs-slide', 'next');
-                nextButton.innerHTML = '<span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span>';
-                tileCarouselDiv.appendChild(nextButton);
-            }
-
-            cardDiv.appendChild(tileCarouselDiv); // Add the carousel to the card
-
-            // Card body content
             const cardBody = document.createElement('div');
             cardBody.className = 'card-body d-flex flex-column';
 
-            const titleLink = document.createElement('a'); // New clickable link for title
-            titleLink.href = '#';
-            titleLink.className = 'clickable-title';
-            titleLink.addEventListener('click', (event) => {
-                event.preventDefault();
-                showImageModal(product);
-            });
-
             const title = document.createElement('h5');
             title.className = 'card-title';
+            // Append the item number to the title without parentheses and with a specific class for styling
             title.innerHTML = `${product.name} <span class="item-number-color">Item #${itemNumber}</span>`;
-            titleLink.appendChild(title); // Append title to the new link
-            cardBody.appendChild(titleLink); // Append the link to cardBody
+            clickableArea.appendChild(title); // Make title part of clickable area
 
+            cardDiv.appendChild(clickableArea); // Add the clickable area to the card
 
             const category = document.createElement('p');
             category.className = 'card-text';
             category.textContent = `Category: ${product.category}`;
             cardBody.appendChild(category);
 
+            // Add Description title and content
             const descriptionTitle = document.createElement('p');
             descriptionTitle.className = 'card-text fw-bold mb-0';
             descriptionTitle.textContent = 'Description:';
@@ -640,24 +520,25 @@ document.addEventListener('DOMContentLoaded', () => {
             descriptionContent.textContent = product.description;
             cardBody.appendChild(descriptionContent);
 
+
             const price = document.createElement('p');
-            price.className = 'price mt-auto';
+            price.className = 'price mt-auto'; // mt-auto to push price and button to bottom
             price.textContent = `$${product.price.toFixed(2)}`;
             cardBody.appendChild(price);
 
+            // Add to Cart button
             if (!product.isSold) {
                 const button = document.createElement('button');
                 button.className = 'btn btn-add-to-cart w-100 mt-2';
-                button.textContent = isInCart ? 'Added to Cart' : 'Add to Cart';
-                button.disabled = isInCart;
-                button.setAttribute('data-product-id', product.id);
+                button.textContent = isInCart ? 'Added to Cart' : 'Add to Cart'; // Change text if in cart
+                button.disabled = isInCart; // Disable if in cart
+                button.setAttribute('data-product-id', product.id); // Store product ID
                 button.addEventListener('click', (event) => {
-                    event.stopPropagation(); // Ensure this click doesn't propagate
-                    addToCart(product);
-                    console.log(`Add to Cart button clicked for product: ${product.name}`); // Added log
+                    // Prevent event from bubbling up to card click if any
+                    event.stopPropagation();
+                    addToCart(product); // Call addToCart function
                 });
                 cardBody.appendChild(button);
-                console.log(`Button for ${product.name} created and listener attached. Initial disabled: ${isInCart}`); // Added log
             } else {
                 const soldOutText = document.createElement('p');
                 soldOutText.className = 'text-danger fw-bold text-center mt-2';
@@ -665,6 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardBody.appendChild(soldOutText);
             }
 
+            // Social Media Share Icons
             const socialShareContainer = document.createElement('div');
             socialShareContainer.className = 'social-share-container';
 
@@ -710,17 +592,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cardBody.appendChild(socialShareContainer);
 
+
             cardDiv.appendChild(cardBody);
             colDiv.appendChild(cardDiv);
             posterGrid.appendChild(colDiv);
-
-            // Initialize the Bootstrap Carousel for the tile after it's added to the DOM
-            // This is crucial for the carousel to function correctly.
-            if (product.images.length > 1) {
-                new bootstrap.Carousel(document.getElementById(tileCarouselId), {
-                    interval: false // Disable auto-sliding for manual control
-                });
-            }
         });
 
         // Update active state of filter buttons
@@ -770,44 +645,36 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {string} sectionToShow - The ID of the section to show.
      */
     function showSection(sectionToShow) {
-        console.log(`[showSection] Attempting to show section: ${sectionToShow}`);
-
-        // Ensure elements are assigned before trying to access their style
-        if (!heroSection || !postersSection || !cartPage) {
-            console.error('[showSection] One or more main section elements not found! Cannot set display properties.');
-            return;
-        }
-
         heroSection.style.display = 'none';
         postersSection.style.display = 'none';
         cartPage.style.display = 'none';
-        console.log('[showSection] All sections initially hidden.');
 
         if (sectionToShow === 'home') {
             heroSection.style.display = 'block';
             postersSection.style.display = 'block';
-            console.log('[showSection] Home section (hero and posters) set to display: block');
         } else if (sectionToShow === 'shop') {
-            // This case is now effectively 'home' since 'Shop Posters' is removed
-            // If you want to show only posters without the carousel, you'd adjust this.
+            // The 'Shop Posters' link was removed from HTML, so this case is now handled by 'home'
+            // If a dedicated 'Shop Posters' section without the carousel is desired later,
+            // this logic would need to be re-evaluated.
             heroSection.style.display = 'none'; // Hide carousel if only showing shop
             postersSection.style.display = 'block';
             renderPosters(currentFilter); // Re-render posters when navigating to shop
-            console.log('[showSection] Shop section (posters only) set to display: block');
         } else if (sectionToShow === 'cart') {
             cartPage.style.display = 'block';
             updateCartDisplay(); // Update cart display when showing cart page
-            console.log('[showSection] Cart section set to display: block');
         }
-        console.log(`[showSection] Final display styles: heroSection=${heroSection.style.display}, postersSection=${postersSection.style.display}, cartPage=${cartPage.style.display}`);
     }
 
-    // Add event listeners for navigation
+    // Event Listeners for Navigation
     homeLink.addEventListener('click', (e) => {
         e.preventDefault();
         showSection('home');
     });
 
+    // Removed the shopPostersLink event listener as the element no longer exists in HTML.
+    // Functionality for "Shop Posters" is now implicitly handled by the "Home" link.
+
+    // Updated cart link event listeners
     if (cartLinkDesktop) {
         cartLinkDesktop.addEventListener('click', (e) => {
             e.preventDefault();
@@ -832,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener for "Continue Shopping" button on cart page
     continueShoppingBtn.addEventListener('click', () => {
-        showSection('home');
+        showSection('home'); // Changed to 'home' as 'shop' link is removed
     });
 
     // Add event listener for the shipping address form submission
@@ -858,4 +725,34 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPosters(currentFilter); // Render posters initially with default filter
     updateCartDisplay(); // Initial cart display
     showSection('home'); // Show home section by default
+
+    // Scroll to Top Button Logic
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        // Only show on mobile/tablet screens (less than lg breakpoint which is 992px)
+        if (window.innerWidth < 992) {
+            // Get the posters section element
+            const postersSectionElement = document.getElementById('posters-section');
+            if (postersSectionElement) {
+                // Check if the user has scrolled past the top of the posters section
+                // A buffer of 100px is added to ensure it's truly "above the fold"
+                const firstRowOffset = postersSectionElement.offsetTop + 100;
+                if (window.scrollY > firstRowOffset) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            }
+        } else {
+            // Ensure button is hidden on larger screens
+            (document.getElementById('scrollToTopBtn')).classList.remove('show');
+        }
+    });
 });
+// script.js content ends here
