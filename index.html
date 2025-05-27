@@ -13,7 +13,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light sticky-top py-3">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#" id="navbar-brand-link">
                 What A Poster
             </a>
 
@@ -114,7 +114,6 @@
             <p>&copy; 2024 What A Poster. All rights reserved.</p>
             <div class="social-icons mt-3">
                 <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
@@ -158,7 +157,7 @@
                                 </div>
                             </div>
                             <p class="mt-3 text-muted text-sm">
-                                If link above does not work please email me at Email@email.com<br><br>
+                                If link above does not work please email me at email@email.com<br><br>
                                 ***Please ensure that Paypal has your correct delivery address - Shipping labels are generated from information you provide.***
                             </p>
                             <button type="submit" id="sendEmailInquiryBtn" class="btn btn-primary w-100 py-2 rounded-pill">
@@ -235,7 +234,6 @@
                             <ul>
                                 <li>Explore our collection of posters by scrolling through the main page.</li>
                                 <li>When you find a poster you're interested in, simply click the "Add to Cart" button. You can add multiple posters to your cart if you wish.</li>
-                                <li>If a poster is marked "Sold Out," it is currently unavailable and cannot be added to your cart.</li>
                             </ul>
                         </div>
                     </div>
@@ -335,7 +333,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-2 text-center">
-                    <img src="" id="modalImage" class="img-fluid rounded-3" alt="Full size image">
+                    <div id="modalImageCarousel" class="carousel slide h-100">
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            </div>
+                        <div class="carousel-inner h-100" id="carouselInner">
+                            </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#modalImageCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#modalImageCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="modalAddToCartBtn" class="btn btn-add-to-cart rounded-pill px-4">Add to Cart</button>
