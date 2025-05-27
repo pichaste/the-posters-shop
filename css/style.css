@@ -1,3 +1,5 @@
+/* style.css content starts here */
+
 body {
     font-family: 'Inter', sans-serif;
     display: flex;
@@ -14,7 +16,6 @@ body {
     color: #007bff !important; /* Original primary color for brand */
     font-weight: bold; /* Ensure the text title is bold */
     font-size: 1.5rem; /* Adjust font size as needed */
-    cursor: pointer; /* Add cursor pointer to indicate clickability */
 }
 /* Removed .navbar-brand img and .navbar-brand .logo-img styles as they are no longer needed */
 
@@ -319,7 +320,9 @@ body {
 .social-share-container .fa-facebook-f:hover {
     color: #1877F2; /* Facebook brand color */
 }
-/* Removed Instagram specific hover color */
+.social-share-container .fa-instagram:hover {
+    color: #C13584; /* Instagram brand color */
+}
 
 /* Styles for clickable image/title */
 .poster-card .clickable-area {
@@ -357,38 +360,12 @@ body {
     overflow: hidden; /* Hide overflow if image is larger than viewport */
 }
 
-/* Styles for the carousel itself within the modal */
-#modalImageCarousel {
-    height: 100%; /* Ensure the carousel takes full height of its parent (modal-body) */
-}
-
-/* Styles for the carousel inner container */
-#modalImageCarousel .carousel-inner {
-    height: 100%; /* Ensure the inner container takes full height of the carousel */
-}
-
-/* Styles for individual carousel items (slides) */
-#modalImageCarousel .carousel-item {
-    height: 100%; /* Ensure each carousel item takes full height of the inner container */
-    display: flex; /* Use flexbox to center image vertically */
-    justify-content: center; /* Center image horizontally */
-    align-items: center; /* Center image vertically */
-}
-
-/* Crucial fix: Hide non-active carousel items */
-#modalImageCarousel .carousel-item:not(.active) {
-    display: none;
-}
-
-/* Styles for the images inside the carousel items */
-#modalImageCarousel .carousel-item img {
+#imageModal #modalImage {
     max-width: 100%;
     max-height: 100%;
     width: auto; /* Allow image to scale down */
     height: auto; /* Allow image to scale down */
     object-fit: contain; /* Ensure the image is fully visible within the modal */
-    display: block; /* Ensure image takes up its own block space */
-    margin: auto; /* Center the image */
 }
 
 #imageModal .modal-footer {
