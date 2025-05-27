@@ -1,5 +1,3 @@
-// script.js content starts here
-
 // Data for Lamy products
 const lamyProducts = [
     { id: 'p001', name: 'Lamy Safari Fountain Pen Poster', category: 'Safari', price: 29.99, isNew: true, isSold: false, images: ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmylamy.com.tw%2Fwp-content%2Fuploads%2FLAMY-SAFARI-2024-%25E5%25BE%25A9%25E5%258F%25A4%25E7%25B6%25A0%25E9%2587%2591%25E5%25A4%25BE-DM-%25E6%25AD%25A3%25E6%2596%25B9%25E9%258B%25BC%25E7%25AD%2586-scaled.jpg&f=1&nofb=1&ipt=01ba2c8278f9ef743e1d22dec2f13a6c81131a2d5d6f1e0807d7863f716a98d3', 'https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue+Variant', 'https://placehold.co/400x250/fd7e14/ffffff?text=Safari+Orange+Variant'], description: 'A vibrant tribute to the iconic Lamy Safari, known for its ergonomic design and bold colors.' },
@@ -10,721 +8,557 @@ const lamyProducts = [
     { id: 'p006', name: 'Lamy Studio Geometric Print', category: 'Studio', price: 28.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/fd7e14/ffffff?text=Studio+Poster', 'https://placehold.co/400x250/6c757d/ffffff?text=Studio+Line+Art'], description: 'A modern geometric print inspired by the unique propeller-shaped clip and cylindrical body of the Lamy Studio.' },
     { id: 'p007', name: 'Lamy Aion Modern Art', category: 'Aion', price: 36.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/20c997/ffffff?text=Aion+Poster'], description: 'Contemporary art piece capturing the seamless, elegant design of the Lamy Aion pen.' },
     { id: 'p008', name: 'Lamy Cp1 Technical Drawing', category: 'Cp1', price: 31.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/6610f2/ffffff?text=Cp1+Poster'], description: 'A precise technical drawing of the slender and minimalist Lamy CP1 pen.' },
-    { id: 'p009', name: 'Lamy Safari Blue Edition', category: 'Safari', price: 29.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/17a2b8/ffffff?text=Safari+Blue'], description: 'A special edition poster celebrating the popular blue color variant of the Lamy Safari.' },
     { id: 'p010', name: 'Lamy Al-Star Black Edition', category: 'Al-Star', price: 34.99, isNew: true, isSold: false, images: ['https://placehold.co/400x250/343a40/ffffff?text=Al-Star+Black'], description: 'Showcasing the sleek and sophisticated black edition of the Lamy Al-Star.' },
     { id: 'p011', name: 'Lamy 2000 Sectional View', category: 'Lamy 2000', price: 49.99, isNew: false, isSold: false, images: ['https://placehold.co/400x250/e83e8c/ffffff?text=2000+View'], description: 'An artistic rendering of the internal mechanics of the Lamy 2000 fountain pen.' },
     { id: 'p012', name: 'Lamy Studio Line Art', category: 'Studio', price: 28.99, isNew: false, isSold: true, images: ['https://placehold.co/400x250/6c757d/ffffff?text=Studio+Line'], description: 'Elegant line art focusing on the distinctive silhouette of the Lamy Studio pen.' },
     { id: 'p013', name: 'Lamy Dialog 3 Poster', category: 'Dialog', price: 45.00, isNew: true, isSold: false, images: ['https://placehold.co/400x250/8a2be2/ffffff?text=Dialog+3', 'https://placehold.co/400x250/00ced1/ffffff?text=Dialog+3+Angle'], description: 'A dynamic poster highlighting the innovative twist mechanism of the Lamy Dialog 3.' },
     { id: 'p014', name: 'Lamy Dialog CC Poster', category: 'Dialog CC', price: 42.00, isNew: false, isSold: false, images: ['https://placehold.co/400x250/00ced1/ffffff?text=Dialog+CC'], description: 'Capturing the compact elegance and retractable nib of the Lamy Dialog CC.' },
-    { id: 'p015', name: 'Lamy Accent Design', category: 'Accent', price: 31.00, isNew: false, isSold: false, images: ['https://placehold.co/400x250/ff6347/ffffff?text=Accent'], description: 'A design-focused poster celebrating the interchangeable grip sections of the Lamy Accent.' },
-    { id: 'p016', name: 'Lamy Pico Minimal', category: 'Pico', price: 25.00, isNew: true, isSold: false, images: ['https://placehold.co/400x250/9acd32/ffffff?text=Pico'], description: 'A minimalist poster showcasing the compact and extendable design of the Lamy Pico ballpoint pen.' },
-    { id: 'p017', name: 'Lamy Logo Illustration', category: 'Logo', price: 27.00, isNew: false, isSold: false, images: ['https://placehold.co/400x250/4682b4/ffffff?text=Logo'], description: 'An illustrative poster emphasizing the simple yet effective design of the Lamy Logo pen.' },
-    { id: 'p018', name: 'Lamy Ideo Sketch', category: 'Ideo', price: 38.00, isNew: false, isSold: true, images: ['https://placehold.co/400x250/b0c4de/343a40?text=Ideo'], description: 'A hand-drawn style sketch poster celebrating the unique, ergonomic triangular body of the Lamy Ideo.' }
+    { id: 'p015', name: 'Lamy Accent Design', category: 'Accent', price: 31.00, isNew: false, isSold: false, images: ['https://placehold.co/400x250/fd7e14/ffffff?text=Accent'], description: 'An artistic poster emphasizing the interchangeable grip section of the Lamy Accent.' }
 ];
 
-// Global cart array
-let cart = [];
-let currentFilter = 'All'; // Track the currently active filter
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Get main section elements
-const heroSection = document.getElementById('hero-section');
 const postersSection = document.getElementById('posters-section');
-const cartPage = document.getElementById('cart-page');
-
-// Get poster grid container
 const posterGrid = document.getElementById('poster-grid');
 const filterButtonsContainer = document.getElementById('filter-buttons');
-
-// Get cart page elements
-const cartCountSpanDesktop = document.getElementById('cart-count-desktop');
-const cartCountSpanMobile = document.getElementById('cart-count-mobile');
-const cartItemsDiv = document.getElementById('cart-items');
-const cartTotalSpan = document.getElementById('cart-total');
-const proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
-const continueShoppingBtn = document.getElementById('continue-shopping-btn');
-
-// Get navbar links
+const cartCountDesktop = document.getElementById('cart-count-desktop');
+const cartCountMobile = document.getElementById('cart-count-mobile');
+const cartPage = document.getElementById('cart-page');
 const homeLink = document.getElementById('home-link');
 const cartLinkDesktop = document.getElementById('cart-link-desktop');
 const cartLinkMobile = document.getElementById('cart-link-mobile');
-
-// Get message box elements (for "Item Added" notification)
+const continueShoppingBtn = document.getElementById('continue-shopping-btn');
+const proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
+const cartItemsContainer = document.getElementById('cart-items');
+const cartTotalSpan = document.getElementById('cart-total');
+const mailtoModal = new bootstrap.Modal(document.getElementById('mailtoModal'));
+const contactModal = new bootstrap.Modal(document.getElementById('contactModal'));
+const howToOrderModal = new bootstrap.Modal(document.getElementById('howToOrderModal'));
+const shippingAddressForm = document.getElementById('shippingAddressForm');
+const sendEmailInquiryBtn = document.getElementById('sendEmailInquiryBtn');
+const emailSentConfirmation = document.getElementById('emailSentConfirmation');
+const confirmEmailSentBtn = document.getElementById('confirmEmailSentBtn');
 const messageBoxOverlay = document.getElementById('messageBoxOverlay');
 const messageBoxTitle = document.getElementById('messageBoxTitle');
 const messageBoxContent = document.getElementById('messageBoxContent');
 const messageBoxCloseBtn = document.getElementById('messageBoxCloseBtn');
-
-// Get mailto modal elements
-const mailtoModalElement = document.getElementById('mailtoModal');
-let mailtoModal; // Declare the variable here
-
-// Elements for shipping address form
-const shippingAddressForm = document.getElementById('shippingAddressForm');
-const fullNameInput = document.getElementById('fullName');
-const addressLine1Input = document.getElementById('addressLine1');
-const addressLine2Input = document.getElementById('addressLine2');
-const cityInput = document.getElementById('city');
-const stateInput = document.getElementById('state');
-const zipCodeInput = document.getElementById('zipCode');
-const sendEmailInquiryBtn = document.getElementById('sendEmailInquiryBtn');
-
-// Elements for the new confirmation state in mailtoModal
-const shippingFormContent = document.getElementById('shippingFormContent');
-const emailSentConfirmation = document.getElementById('emailSentConfirmation');
-const confirmEmailSentBtn = document.getElementById('confirmEmailSentBtn');
-
-// New elements for Contact Modal
-const contactModalElement = document.getElementById('contactModal');
-let contactModal; // Declare the variable here
-
+const navbarBrandLink = document.getElementById('navbar-brand-link');
 const contactForm = document.getElementById('contactForm');
-const contactNameInput = document.getElementById('contactName');
-const contactEmailInput = document.getElementById('contactEmail');
-const contactSubjectInput = document.getElementById('contactSubject');
-const contactMessageTextarea = document.getElementById('contactMessage');
 const sendContactEmailBtn = document.getElementById('sendContactEmailBtn');
-
-// Get image modal elements
-const imageModalElement = document.getElementById('imageModal');
-const imageModal = new bootstrap.Modal(imageModalElement);
-const modalImage = document.getElementById('modalImage');
+const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+const modalImageCarousel = document.getElementById('modalImageCarousel');
+const carouselIndicators = document.getElementById('carouselIndicators');
+const carouselInner = document.getElementById('carouselInner');
 const imageModalLabel = document.getElementById('imageModalLabel');
 const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
-// Variable to hold the product currently displayed in the image modal
-let currentProductInModal = null;
+let currentModalProductId = null; // To keep track of the product whose images are in the modal
 
-// Scroll to Top Button element
-let scrollToTopBtn;
+// --- Helper Functions ---
 
-// Obfuscated email address for contact form
-// Example: 'contact@example.com' -> char codes
-const obfuscatedEmailParts = [99, 111, 110, 116, 97, 99, 116, 64, 101, 120, 97, 109, 112, 108, 101, 46, 99, 111, 109];
-const recipientEmail = String.fromCharCode(...obfuscatedEmailParts);
+function showMessageBox(title, message) {
+    messageBoxTitle.textContent = title;
+    messageBoxContent.textContent = message;
+    messageBoxOverlay.classList.add('show');
+}
 
+function hideMessageBox() {
+    messageBoxOverlay.classList.remove('show');
+}
 
-// Initialize carousel and render posters when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Bootstrap Modals
-    mailtoModal = new bootstrap.Modal(mailtoModalElement);
-    contactModal = new bootstrap.Modal(contactModalElement);
-    scrollToTopBtn = document.getElementById('scrollToTopBtn');
+// Function to update cart counts
+function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCountDesktop.textContent = count;
+    cartCountMobile.textContent = count;
+    proceedToCheckoutBtn.disabled = cart.length === 0;
+}
 
+// Function to save cart to local storage
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
-    /**
-     * Displays a custom message box.
-     * @param {string} title - The title of the message box.
-     * @param {string} content - The content/message to display.
-     */
-    function showMessageBox(title, content) {
-        messageBoxTitle.textContent = title;
-        messageBoxContent.textContent = content;
-        messageBoxOverlay.classList.add('show');
-        // Automatically hide after 3 seconds
-        setTimeout(hideMessageBox, 3000);
-    }
+// Function to render product cards
+function renderProducts(productsToRender) {
+    posterGrid.innerHTML = ''; // Clear existing products
+    productsToRender.forEach(product => {
+        const isSoldOut = product.isSold;
+        const buttonText = isSoldOut ? 'Sold Out' : 'Add to Cart';
+        const buttonDisabled = isSoldOut ? 'disabled' : '';
+        const buttonClass = isSoldOut ? 'btn-secondary' : 'btn-add-to-cart';
 
-    /**
-     * Hides the custom message box.
-     */
-    function hideMessageBox() {
-        messageBoxOverlay.classList.remove('show');
-    }
+        const productCard = `
+            <div class="col">
+                <div class="card poster-card h-100" data-product-id="${product.id}">
+                    <div class="clickable-area">
+                        <img src="${product.images[0]}" class="card-img-top" alt="${product.name}">
+                        ${product.isNew ? '<span class="label new">NEW</span>' : ''}
+                        ${product.isSold ? '<span class="label sold">SOLD</span>' : ''}
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title clickable-area">${product.name}</h5>
+                        <p class="card-text">${product.description}</p>
+                        <p class="item-number-color">Item: ${product.id}</p>
+                        <p class="price mt-auto">$${product.price.toFixed(2)}</p>
+                        <div class="social-share-container mb-3">
+                            <a href="#" class="share-button" data-platform="pinterest" data-product-id="${product.id}"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" class="share-button" data-platform="twitter" data-product-id="${product.id}"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" class="share-button" data-platform="facebook" data-product-id="${product.id}"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                        <button class="btn ${buttonClass} w-100 ${buttonDisabled}" data-product-id="${product.id}" ${buttonDisabled}>
+                            ${buttonText}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        posterGrid.innerHTML += productCard;
+    });
+    addEventListenersToProductCards();
+    addEventListenersToShareButtons();
+}
 
-    // Add event listener to the close button of the message box
-    messageBoxCloseBtn.addEventListener('click', hideMessageBox);
-    // Also hide if clicking outside the message box content
-    messageBoxOverlay.addEventListener('click', (event) => {
-        if (event.target === messageBoxOverlay) {
-            hideMessageBox();
+// Function to render filter buttons
+function renderFilterButtons() {
+    const categories = ['All', ...new Set(lamyProducts.map(p => p.category))];
+    filterButtonsContainer.innerHTML = ''; // Clear existing buttons
+
+    categories.forEach(category => {
+        const buttonClass = category === 'All' ? 'all-filter-button' : '';
+        const button = document.createElement('button');
+        button.className = `btn btn-outline-primary rounded-pill px-3 py-2 ${buttonClass}`;
+        button.textContent = category;
+        button.dataset.category = category;
+        filterButtonsContainer.appendChild(button);
+    });
+
+    // Add event listeners to filter buttons
+    filterButtonsContainer.addEventListener('click', (event) => {
+        if (event.target.tagName === 'BUTTON') {
+            const selectedCategory = event.target.dataset.category;
+            filterProducts(selectedCategory);
+
+            // Update active state of buttons
+            filterButtonsContainer.querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-outline-primary');
+            });
+            event.target.classList.add('active');
+            event.target.classList.remove('btn-outline-primary');
+            event.target.classList.add('btn-primary');
         }
     });
 
-    /**
-     * Removes an item from the cart based on its ID.
-     * @param {string} productId - The ID of the product to remove.
-     */
-    function removeFromCart(productId) {
-        const initialCartLength = cart.length;
-        cart = cart.filter(item => item.id !== productId);
-        // No showMessageBox for "Item Removed" as per user request
-        updateCartDisplay();
+    // Set 'All' as active by default
+    const allButton = filterButtonsContainer.querySelector('.all-filter-button');
+    if (allButton) {
+        allButton.classList.add('active');
+        allButton.classList.remove('btn-outline-primary');
+        allButton.classList.add('btn-primary');
     }
+}
 
-    /**
-     * Updates the cart count in the navbar and renders cart items on the cart page.
-     */
-    function updateCartDisplay() {
-        const currentCartCount = cart.length;
-
-        if (cartCountSpanDesktop) {
-            cartCountSpanDesktop.textContent = currentCartCount;
-        }
-        if (cartCountSpanMobile) {
-            cartCountSpanMobile.textContent = currentCartCount;
-        }
-
-        cartItemsDiv.innerHTML = ''; // Clear current cart items display
-        let total = 0;
-
-        if (cart.length === 0) {
-            cartItemsDiv.innerHTML = '<p class="text-center text-muted">Your cart is empty.</p>';
-            proceedToCheckoutBtn.disabled = true;
-        } else {
-            cart.forEach(item => {
-                const cartItemDiv = document.createElement('div');
-                cartItemDiv.className = 'cart-item';
-
-                const detailsContainer = document.createElement('div');
-                detailsContainer.style.display = 'flex';
-                detailsContainer.style.alignItems = 'center';
-                detailsContainer.style.flexGrow = '1';
-
-                const img = document.createElement('img');
-                img.src = item.images[0]; // Display first image in cart
-                img.alt = item.name;
-                detailsContainer.appendChild(img);
-
-                const detailsTextDiv = document.createElement('div');
-                detailsTextDiv.className = 'cart-item-details';
-                const nameHeading = document.createElement('h6');
-                nameHeading.textContent = `${item.name} (Item #${item.itemNumber})`;
-                detailsTextDiv.appendChild(nameHeading);
-                const pricePara = document.createElement('p');
-                pricePara.textContent = `$${item.price.toFixed(2)}`;
-                detailsTextDiv.appendChild(pricePara);
-                detailsContainer.appendChild(detailsTextDiv);
-
-                cartItemDiv.appendChild(detailsContainer);
-
-                const removeButton = document.createElement('button');
-                removeButton.className = 'remove-item-btn';
-                removeButton.textContent = 'Remove';
-                removeButton.setAttribute('data-product-id', item.id);
-                removeButton.addEventListener('click', () => removeFromCart(item.id));
-                cartItemDiv.appendChild(removeButton);
-
-                cartItemsDiv.appendChild(cartItemDiv);
-                total += item.price;
-            });
-        }
-        cartTotalSpan.textContent = total.toFixed(2);
-        proceedToCheckoutBtn.disabled = cart.length === 0; // Enable/disable based on cart content
-        renderPosters(currentFilter); // Re-render posters to update button states
-        // Also update the state of the modal's add to cart button if the modal is open
-        if (imageModal._isShown && currentProductInModal) {
-            updateModalAddToCartButton(currentProductInModal);
-        }
+// Function to filter and render products
+function filterProducts(category) {
+    let filteredProducts = [];
+    if (category === 'All') {
+        filteredProducts = lamyProducts;
+    } else {
+        filteredProducts = lamyProducts.filter(product => product.category === category);
     }
+    renderProducts(filteredProducts);
+}
 
-    /**
-     * Adds a product to the cart.
-     * @param {object} product - The product object to add.
-     */
-    function addToCart(product) {
-        // Check if the item is already in the cart
-        if (cart.some(item => item.id === product.id)) {
-            showMessageBox('Already in Cart', `${product.name} (Item #${product.itemNumber}) is already in your cart.`);
-            console.log(`Attempted to add ${product.name} (ID: ${product.id}, Item #: ${product.itemNumber}) but it's already in cart.`);
+// Function to add product to cart
+function addToCart(productId) {
+    const product = lamyProducts.find(p => p.id === productId);
+    if (product) {
+        if (product.isSold) {
+            showMessageBox('Item Sold Out', 'This item is currently sold out and cannot be added to your cart.');
             return;
         }
 
-        cart.push(product);
-        updateCartDisplay();
-        console.log(`Added ${product.name} (ID: ${product.id}, Item #: ${product.itemNumber}) to cart.`);
+        const cartItem = cart.find(item => item.id === productId);
+        if (cartItem) {
+            cartItem.quantity++;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        saveCart();
+        updateCartCount();
+        showMessageBox('Added to Cart', `${product.name} has been added to your cart.`);
     }
+}
 
-    /**
-     * Generates the mailto link and opens the email client for purchase inquiry.
-     */
-    function generateAndOpenMailtoLink(event) {
-        event.preventDefault(); // Prevent default form submission
+// Function to remove item from cart
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+    renderCartItems();
+    updateCartCount();
+}
 
-        const fullName = fullNameInput.value.trim();
-        const addressLine1 = addressLine1Input.value.trim();
-        const addressLine2 = addressLine2Input.value.trim(); // Optional
-        const city = cityInput.value.trim();
-        const state = stateInput.value.trim();
-        const zipCode = zipCodeInput.value.trim();
+// Function to render cart items
+function renderCartItems() {
+    cartItemsContainer.innerHTML = ''; // Clear existing items
+    let total = 0;
 
-        const today = new Date();
-        const month = (today.getMonth() + 1).toString().padStart(2, '0');
-        const day = today.getDate().toString().padStart(2, '0');
-        const year = today.getFullYear();
-        const formattedDate = `${month}/${day}/${year}`;
-
-        const cartTotal = cartTotalSpan.textContent;
-        const shippingDisclaimer = document.querySelector('.shipping-disclaimer').textContent;
-
-        let itemsList = '';
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="text-center">Your cart is empty.</p>';
+    } else {
         cart.forEach(item => {
-            itemsList += `- ${item.name} **Item #${item.itemNumber}** - Price: $${item.price.toFixed(2)}\n`;
-        });
-
-        const body = encodeURIComponent(
-            `${formattedDate}\n\n` +
-            `Hello,\n\n` +
-            `I am interested in purchasing the following items from your Posters collection:\n` +
-            `${itemsList}\n` +
-            `Total Price: $${cartTotal}\n` +
-            `${shippingDisclaimer}\n\n` +
-            `Shipping Information\n` + // Updated title
-            `Name: ${fullName}\n` +
-            `Address: ${addressLine1}${addressLine2 ? ' ' + addressLine2 : ''}\n` +
-            `City, State, Zip: ${city}, ${state} ${zipCode}\n\n` +
-            `***Please ensure that Paypal has your correct delivery address - Shipping labels are generated from information you provide.***`
-        );
-        const mailtoUrl = `mailto:your-email@example.com?subject=${encodeURIComponent(`Purchase Inquiry - Posters Cart - ${fullName}`)}&body=${body}`;
-
-        window.location.href = mailtoUrl; // Attempt to open email client
-
-        // Hide the shipping form and show the confirmation message
-        shippingFormContent.style.display = 'none';
-        emailSentConfirmation.style.display = 'block';
-    }
-
-    /**
-     * Handles the confirmation that the email has been sent.
-     * Clears the cart and closes the modal.
-     */
-    function confirmEmailSentAndClearCart() {
-        cart = []; // Clear the cart
-        updateCartDisplay(); // Update the display to reflect the empty cart
-        mailtoModal.hide(); // Use the initialized modal instance
-        showMessageBox('Purchase Inquiry Sent!', 'Your inquiry has been sent. We will get back to you as soon as we can.');
-    }
-
-    /**
-     * Generates the mailto link and opens the email client for contact form.
-     */
-    function sendContactEmail(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        const name = contactNameInput.value.trim();
-        const email = contactEmailInput.value.trim();
-        const subject = contactSubjectInput.value.trim();
-        const message = contactMessageTextarea.value.trim();
-
-        const emailSubject = encodeURIComponent(`Contact Inquiry from ${name}: ${subject}`);
-        const emailBody = encodeURIComponent(
-            `Name: ${name}\n` +
-            `Email: ${email}\n\n` +
-            `Message:\n${message}`
-        );
-
-        const mailtoLink = `mailto:${recipientEmail}?subject=${emailSubject}&body=${emailBody}`;
-        window.location.href = mailtoLink;
-
-        // Clear form and close modal after a short delay
-        setTimeout(() => {
-            contactForm.reset();
-            contactModal.hide(); // Use the initialized modal instance
-            showMessageBox('Message Sent!', 'Thank you for your message. We will get back to you shortly.');
-        }, 100);
-    }
-
-    /**
-     * Displays the mailto modal with pre-populated subject and body based on cart contents.
-     */
-    function showMailtoModalForCart() {
-        // Reset form fields and show the shipping form content
-        shippingAddressForm.reset();
-        shippingFormContent.style.display = 'block';
-        emailSentConfirmation.style.display = 'none';
-        mailtoModal.show(); // Use the initialized modal instance
-    }
-
-    /**
-     * Generates a product-specific URL for sharing.
-     * In a real application, this would link to a dedicated product page.
-     * For this single-page app, it's a hash-based URL.
-     * @param {string} productId - The ID of the product.
-     * @returns {string} The URL for the product.
-     */
-    function getProductShareUrl(productId) {
-        // In a real e-commerce site, this would be a link to the product's dedicated page.
-        // For this single-page example, we'll use a hash to simulate a unique product URL.
-        return `${window.location.origin}${window.location.pathname}#product-${productId}`;
-    }
-
-    /**
-     * Shares the product on Facebook.
-     * @param {object} product - The product object to share.
-     */
-    function shareOnFacebook(product) {
-        const shareUrl = getProductShareUrl(product.id);
-        const quote = encodeURIComponent(`${product.name} - ${product.description}`);
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${quote}`, '_blank');
-    }
-
-    /**
-     * Shares the product on X (Twitter).
-     * @param {object} product - The product object to share.
-     */
-    function shareOnX(product) {
-        const shareUrl = getProductShareUrl(product.id);
-        const text = encodeURIComponent(`${product.name}: ${product.description}`);
-        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${shareUrl}`, '_blank');
-    }
-
-    /**
-     * Shares the product on Pinterest.
-     * @param {object} product - The product object to share.
-     */
-    function shareOnPinterest(product) {
-        const shareUrl = getProductShareUrl(product.id);
-        const media = product.images[0]; // Use the product's first image URL
-        const description = encodeURIComponent(`${product.name} - ${product.description}`);
-        window.open(`https://pinterest.com/pin/create/button/?url=${shareUrl}&media=${media}&description=${description}`, '_blank');
-    }
-
-    /**
-     * Shares the product on Instagram.
-     * Note: Instagram's web sharing is limited. This will typically open Instagram's website,
-     * and the user will need to manually upload the image and add the text.
-     * @param {object} product - The product object to share.
-     */
-    function shareOnInstagram(product) {
-        // Instagram's web sharing is not direct like Pinterest/Facebook/X.
-        // This will open Instagram's website, and the user will have to manually
-        // upload the image and type the caption.
-        // For a more integrated experience, a backend would be needed to handle
-        // the Instagram API, which is beyond client-side capabilities.
-        window.open('https://www.instagram.com/', '_blank');
-        console.log(`Attempting to share ${product.name} on Instagram. User will need to manually upload.`);
-    }
-
-    /**
-     * Updates the state of the "Add to Cart" button within the image modal.
-     * @param {object} product - The product object currently displayed in the modal.
-     */
-    function updateModalAddToCartButton(product) {
-        if (product.isSold) {
-            modalAddToCartBtn.textContent = 'Sold Out';
-            modalAddToCartBtn.disabled = true;
-            modalAddToCartBtn.classList.add('btn-secondary'); // Apply secondary style for sold out
-            modalAddToCartBtn.classList.remove('btn-primary');
-        } else if (cart.some(item => item.id === product.id)) {
-            modalAddToCartBtn.textContent = 'Added to Cart';
-            modalAddToCartBtn.disabled = true;
-            modalAddToCartBtn.classList.remove('btn-secondary');
-            modalAddToCartBtn.classList.add('btn-primary');
-        } else {
-            modalAddToCartBtn.textContent = 'Add to Cart';
-            modalAddToCartBtn.disabled = false;
-            modalAddToCartBtn.classList.remove('btn-secondary');
-            modalAddToCartBtn.classList.add('btn-primary');
-        }
-    }
-
-    /**
-     * Displays the full-size image in a modal.
-     * @param {object} product - The product object to display.
-     */
-    function showImageModal(product) {
-        currentProductInModal = product; // Store the product globally
-        modalImage.src = product.images[0]; // Display first image in modal
-        imageModalLabel.textContent = product.name;
-
-        // Update the Add to Cart button state based on the product
-        updateModalAddToCartButton(product);
-
-        // Remove previous event listeners to prevent multiple bindings
-        modalAddToCartBtn.onclick = null; // Clear existing click handler
-        if (!product.isSold) {
-            modalAddToCartBtn.addEventListener('click', () => {
-                addToCart(product);
-                // After adding to cart, update the button state immediately
-                updateModalAddToCartButton(product);
-            });
-        }
-        imageModal.show();
-    }
-
-    /**
-     * Renders the poster cards dynamically based on the lamyProducts array and current filter.
-     * @param {string} filterCategory - The category to filter by, or 'All' for all products.
-     */
-    function renderPosters(filterCategory = 'All') {
-        posterGrid.innerHTML = ''; // Clear existing content
-        const filteredProducts = filterCategory === 'All'
-            ? lamyProducts
-            : lamyProducts.filter(product => product.category === filterCategory);
-
-        filteredProducts.forEach((product, index) => {
-            const colDiv = document.createElement('div');
-            colDiv.className = 'col';
-
-            const cardDiv = document.createElement('div');
-            cardDiv.className = 'card poster-card h-100'; // h-100 for consistent height
-
-            // Generate unique item number and add it to the product object for cart use
-            const itemNumber = (index).toString().padStart(4, '0');
-            product.itemNumber = itemNumber; // Add itemNumber to the product object
-
-            // Check if the item is already in the cart to disable the button
-            const isInCart = cart.some(item => item.id === product.id);
-
-            // Add "New" or "Sold" label if applicable
-            if (product.isNew) {
-                const newLabel = document.createElement('span');
-                newLabel.className = 'label new';
-                newLabel.textContent = 'New';
-                cardDiv.appendChild(newLabel);
-            } else if (product.isSold) {
-                const soldLabel = document.createElement('span');
-                soldLabel.className = 'label sold';
-                soldLabel.textContent = 'Sold';
-                cardDiv.appendChild(soldLabel);
-            }
-
-            // Clickable area for image and title
-            const clickableArea = document.createElement('a');
-            clickableArea.href = '#'; // Prevent default navigation
-            clickableArea.className = 'clickable-area';
-            clickableArea.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent default link behavior
-                showImageModal(product); // Pass the entire product object
-            });
-
-            const img = document.createElement('img');
-            img.src = product.images[0]; // Use the first image from the array
-            img.className = 'card-img-top';
-            img.alt = product.name;
-            clickableArea.appendChild(img);
-
-            const cardBody = document.createElement('div');
-            cardBody.className = 'card-body d-flex flex-column';
-
-            const title = document.createElement('h5');
-            title.className = 'card-title';
-            // Append the item number to the title without parentheses and with a specific class for styling
-            title.innerHTML = `${product.name} <span class="item-number-color">Item #${itemNumber}</span>`;
-            clickableArea.appendChild(title); // Make title part of clickable area
-
-            cardDiv.appendChild(clickableArea); // Add the clickable area to the card
-
-            const category = document.createElement('p');
-            category.className = 'card-text';
-            category.textContent = `Category: ${product.category}`;
-            cardBody.appendChild(category);
-
-            // Add Description title and content
-            const descriptionTitle = document.createElement('p');
-            descriptionTitle.className = 'card-text fw-bold mb-0';
-            descriptionTitle.textContent = 'Description:';
-            cardBody.appendChild(descriptionTitle);
-
-            const descriptionContent = document.createElement('p');
-            descriptionContent.className = 'card-text';
-            descriptionContent.textContent = product.description;
-            cardBody.appendChild(descriptionContent);
-
-
-            const price = document.createElement('p');
-            price.className = 'price mt-auto'; // mt-auto to push price and button to bottom
-            price.textContent = `$${product.price.toFixed(2)}`;
-            cardBody.appendChild(price);
-
-            // Add to Cart button
-            if (!product.isSold) {
-                const button = document.createElement('button');
-                button.className = 'btn btn-add-to-cart w-100 mt-2';
-                button.textContent = isInCart ? 'Added to Cart' : 'Add to Cart'; // Change text if in cart
-                button.disabled = isInCart; // Disable if in cart
-                button.setAttribute('data-product-id', product.id); // Store product ID
-                button.addEventListener('click', (event) => {
-                    // Prevent event from bubbling up to card click if any
-                    event.stopPropagation();
-                    addToCart(product); // Call addToCart function
-                });
-                cardBody.appendChild(button);
-            } else {
-                const soldOutText = document.createElement('p');
-                soldOutText.className = 'text-danger fw-bold text-center mt-2';
-                soldOutText.textContent = 'Currently Sold Out';
-                cardBody.appendChild(soldOutText);
-            }
-
-            // Social Media Share Icons
-            const socialShareContainer = document.createElement('div');
-            socialShareContainer.className = 'social-share-container';
-
-            const pinterestLink = document.createElement('a');
-                pinterestLink.href = '#';
-                pinterestLink.title = 'Share on Pinterest';
-                pinterestLink.innerHTML = '<i class="fab fa-pinterest"></i>';
-                pinterestLink.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    shareOnPinterest(product);
-                });
-                socialShareContainer.appendChild(pinterestLink);
-
-                const xLink = document.createElement('a');
-                xLink.href = '#';
-                xLink.title = 'Share on X (Twitter)';
-                xLink.innerHTML = '<i class="fab fa-x-twitter"></i>';
-                xLink.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    shareOnX(product);
-                });
-                socialShareContainer.appendChild(xLink);
-
-                const facebookLink = document.createElement('a');
-                facebookLink.href = '#';
-                facebookLink.title = 'Share on Facebook';
-                facebookLink.innerHTML = '<i class="fab fa-facebook-f"></i>';
-                facebookLink.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    shareOnFacebook(product);
-                });
-                socialShareContainer.appendChild(facebookLink);
-
-                const instagramLink = document.createElement('a');
-                instagramLink.href = '#';
-                instagramLink.title = 'Share on Instagram';
-                instagramLink.innerHTML = '<i class="fab fa-instagram"></i>';
-                instagramLink.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    shareOnInstagram(product);
-                });
-                socialShareContainer.appendChild(instagramLink);
-
-            cardBody.appendChild(socialShareContainer);
-
-
-            cardDiv.appendChild(cardBody);
-            colDiv.appendChild(cardDiv);
-            posterGrid.appendChild(colDiv);
-        });
-
-        // Update active state of filter buttons
-        document.querySelectorAll('.filter-buttons .btn').forEach(button => {
-            if (button.dataset.filter === filterCategory) {
-                button.classList.add('active');
-            } else {
-                button.classList.remove('active');
-            }
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            const cartItemElement = `
+                <div class="cart-item">
+                    <img src="${item.images[0]}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h6>${item.name}</h6>
+                        <p>Quantity: ${item.quantity}</p>
+                        <p>Price: $${item.price.toFixed(2)}</p>
+                        <p>Total: $${itemTotal.toFixed(2)}</p>
+                    </div>
+                    <button class="remove-item-btn" data-product-id="${item.id}">Remove</button>
+                </div>
+            `;
+            cartItemsContainer.innerHTML += cartItemElement;
         });
     }
 
-    /**
-     * Initializes the filter buttons dynamically.
-     */
-    function initializeFilterButtons() {
-        // Get unique categories and sort them, then prepend 'All'
-        const categories = ['All', ...new Set(lamyProducts.map(p => p.category))].sort((a, b) => {
-            if (a === 'All') return -1; // 'All' comes first
-            if (b === 'All') return 1;
-            return a.localeCompare(b); // Sort others alphabetically
+    cartTotalSpan.textContent = total.toFixed(2);
+    // Add event listeners to remove buttons
+    document.querySelectorAll('.remove-item-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const productId = event.target.dataset.productId;
+            removeFromCart(productId);
         });
+    });
+}
 
-        filterButtonsContainer.innerHTML = ''; // Clear existing buttons
-
-        categories.forEach(category => {
-            const button = document.createElement('button');
-            button.className = 'btn btn-outline-primary';
-            button.textContent = category;
-            button.dataset.filter = category; // Store category in data-filter attribute
-
-            // Add specific styling for the "All" button
-            if (category === 'All') {
-                button.classList.add('all-filter-button'); // New class for "All" button
-            }
-
-            button.addEventListener('click', () => {
-                currentFilter = category; // Update current filter
-                renderPosters(currentFilter);
-            });
-            filterButtonsContainer.appendChild(button);
-        });
-    }
-
-    /**
-     * Manages section visibility.
-     * @param {string} sectionToShow - The ID of the section to show.
-     */
-    function showSection(sectionToShow) {
+// Function to show the posters section and hide the cart
+function showPostersSection() {
+    postersSection.style.display = 'block';
+    // Only show hero section if it's the 'home' view
+    const currentActiveNavLink = document.querySelector('.navbar-nav .nav-link.active');
+    if (currentActiveNavLink && currentActiveNavLink.id === 'home-link') {
+        heroSection.style.display = 'block';
+    } else if (document.activeElement && document.activeElement.id === 'navbar-brand-link') {
+        heroSection.style.display = 'block';
+    } else {
         heroSection.style.display = 'none';
-        postersSection.style.display = 'none';
-        cartPage.style.display = 'none';
-
-        if (sectionToShow === 'home') {
-            heroSection.style.display = 'block';
-            postersSection.style.display = 'block';
-        } else if (sectionToShow === 'shop') {
-            // The 'Shop Posters' link was removed from HTML, so this case is now handled by 'home'
-            // If a dedicated 'Shop Posters' section without the carousel is desired later,
-            // this logic would need to be re-evaluated.
-            heroSection.style.display = 'none'; // Hide carousel if only showing shop
-            postersSection.style.display = 'block';
-            renderPosters(currentFilter); // Re-render posters when navigating to shop
-        } else if (sectionToShow === 'cart') {
-            cartPage.style.display = 'block';
-            updateCartDisplay(); // Update cart display when showing cart page
-        }
     }
+    cartPage.style.display = 'none';
+}
 
-    // Event Listeners for Navigation
-    homeLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection('home');
+// Function to show the cart section and hide posters
+function showCartPage() {
+    postersSection.style.display = 'none';
+    heroSection.style.display = 'none';
+    cartPage.style.display = 'block';
+    renderCartItems(); // Render cart items whenever cart page is shown
+}
+
+// Function to generate Mailto link for purchase inquiry
+function generateMailtoLink(fullName, addressLine1, addressLine2, city, state, zipCode) {
+    const recipient = 'email@email.com'; // Replace with your actual email
+    const subject = `Purchase Inquiry - Posters Cart - ${fullName}`;
+    let body = `Dear What A Poster Team,\n\n`;
+    body += `I would like to inquire about purchasing the following items from my cart:\n\n`;
+
+    cart.forEach(item => {
+        body += `- ${item.name} (Item ID: ${item.id}) - Quantity: ${item.quantity} - Price: $${item.price.toFixed(2)} each\n`;
     });
 
-    // Removed the shopPostersLink event listener as the element no longer exists in HTML.
-    // Functionality for "Shop Posters" is now implicitly handled by the "Home" link.
-
-    // Updated cart link event listeners
-    if (cartLinkDesktop) {
-        cartLinkDesktop.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSection('cart');
-        });
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    body += `\nCart Total: $${total.toFixed(2)}\n\n`;
+    body += `My shipping address is:\n`;
+    body += `Full Name: ${fullName}\n`;
+    body += `Address Line 1: ${addressLine1}\n`;
+    if (addressLine2) {
+        body += `Address Line 2: ${addressLine2}\n`;
     }
-    if (cartLinkMobile) {
-        cartLinkMobile.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSection('cart');
-        });
+    body += `City: ${city}\n`;
+    body += `State: ${state}\n`;
+    body += `Zip Code: ${zipCode}\n\n`;
+    body += `Please confirm availability and provide instructions for payment.\n\n`;
+    body += `Thank you,\n${fullName}`;
+
+    const encodedBody = encodeURIComponent(body);
+    return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodedBody}`;
+}
+
+// Function to generate Mailto link for contact form
+function generateContactMailtoLink(name, email, subject, message) {
+    const recipient = 'email@email.com'; // Replace with your actual contact email
+    const fullSubject = `Contact Form: ${subject}`;
+    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+    const encodedBody = encodeURIComponent(body);
+    return `mailto:${recipient}?subject=${encodeURIComponent(fullSubject)}&body=${encodedBody}`;
+}
+
+// Function to open image modal
+function openImageModal(productId) {
+    const product = lamyProducts.find(p => p.id === productId);
+    if (!product) return;
+
+    currentModalProductId = productId; // Store the ID of the product currently in the modal
+
+    imageModalLabel.textContent = product.name; // Set modal title
+    modalAddToCartBtn.dataset.productId = productId; // Set product ID for add to cart button
+
+    // Disable Add to Cart button if sold out or already in cart
+    const isInCart = cart.some(item => item.id === productId);
+    if (product.isSold) {
+        modalAddToCartBtn.textContent = 'Sold Out';
+        modalAddToCartBtn.disabled = true;
+        modalAddToCartBtn.classList.add('btn-secondary');
+        modalAddToCartBtn.classList.remove('btn-primary');
+    } else if (isInCart) {
+        modalAddToCartBtn.textContent = 'Added to Cart';
+        modalAddToCartBtn.disabled = true;
+        modalAddToCartBtn.classList.remove('btn-secondary');
+        modalAddToCartBtn.classList.add('btn-primary');
+    } else {
+        modalAddToCartBtn.textContent = 'Add to Cart';
+        modalAddToCartBtn.disabled = false;
+        modalAddToCartBtn.classList.remove('btn-secondary');
+        modalAddToCartBtn.classList.add('btn-primary');
     }
 
-    // Event listener for "Proceed to Checkout" button on cart page
-    proceedToCheckoutBtn.addEventListener('click', () => {
-        if (cart.length > 0) {
-            showMailtoModalForCart();
-        } else {
-            showMessageBox('Cart Empty', 'Please add items to your cart before proceeding to checkout.');
-        }
+    // Clear previous carousel content
+    carouselIndicators.innerHTML = '';
+    carouselInner.innerHTML = '';
+
+    // Populate carousel with product images
+    product.images.forEach((imageSrc, index) => {
+        const indicator = `<button type="button" data-bs-target="#modalImageCarousel" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}" aria-label="Slide ${index + 1}"></button>`;
+        carouselIndicators.innerHTML += indicator;
+
+        const carouselItem = `<div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                <img src="${imageSrc}" class="d-block w-100" alt="${product.name} - Image ${index + 1}">
+                              </div>`;
+        carouselInner.innerHTML += carouselItem;
     });
 
-    // Event listener for "Continue Shopping" button on cart page
-    continueShoppingBtn.addEventListener('click', () => {
-        showSection('home'); // Changed to 'home' as 'shop' link is removed
+    imageModal.show(); // Show the Bootstrap modal
+}
+
+// --- Event Listeners ---
+
+// Add event listeners to "Add to Cart" buttons dynamically
+function addEventListenersToProductCards() {
+    document.querySelectorAll('.poster-card .btn-add-to-cart, .poster-card .clickable-area').forEach(element => {
+        element.removeEventListener('click', handleProductCardClick); // Remove existing listener to prevent duplicates
+        element.addEventListener('click', handleProductCardClick);
     });
+}
 
-    // Add event listener for the shipping address form submission
-    shippingAddressForm.addEventListener('submit', generateAndOpenMailtoLink);
+function handleProductCardClick(event) {
+    const productId = event.currentTarget.dataset.productId || event.currentTarget.closest('.poster-card').dataset.productId;
+    if (event.target.classList.contains('btn-add-to-cart')) {
+        // If the add to cart button was clicked
+        addToCart(productId);
+    } else if (event.target.closest('.clickable-area')) {
+        // If the image or title was clicked
+        openImageModal(productId);
+    }
+}
 
-    // Add event listener for the confirm email sent button
-    confirmEmailSentBtn.addEventListener('click', confirmEmailSentAndClearCart);
+// Add event listeners to social share buttons
+function addEventListenersToShareButtons() {
+    document.querySelectorAll('.share-button').forEach(button => {
+        button.removeEventListener('click', handleShareButtonClick); // Prevent duplicate listeners
+        button.addEventListener('click', handleShareButtonClick);
+    });
+}
 
-    // Add event listener for the contact form submission
-    contactForm.addEventListener('submit', sendContactEmail);
+function handleShareButtonClick(event) {
+    event.preventDefault(); // Prevent default link behavior
+    const platform = event.currentTarget.dataset.platform;
+    const productId = event.currentTarget.dataset.productId;
+    const product = lamyProducts.find(p => p.id === productId);
 
+    if (!product) return;
 
-    // Initialize Bootstrap Carousel
-    const heroCarousel = document.getElementById('heroCarousel');
-    if (heroCarousel) {
-        new bootstrap.Carousel(heroCarousel, {
-            interval: 5000, // Slide every 5 seconds
-            pause: 'hover' // Pause on mouse hover
-        });
+    const pageUrl = window.location.href; // Get current page URL
+    const imageUrl = product.images[0]; // Use the first image for sharing
+    const text = `Check out this amazing poster: ${product.name} from What A Poster! Price: $${product.price.toFixed(2)}.`;
+
+    let shareUrl = '';
+
+    switch (platform) {
+        case 'pinterest':
+            shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(text)}`;
+            break;
+        case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(pageUrl)}`;
+            break;
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(text)}`;
+            break;
+        default:
+            return;
     }
 
-    initializeFilterButtons(); // Initialize filter buttons
-    renderPosters(currentFilter); // Render posters initially with default filter
-    updateCartDisplay(); // Initial cart display
-    showSection('home'); // Show home section by default
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+}
+
+// Event listener for Mailto modal's Add to Cart button
+modalAddToCartBtn.addEventListener('click', () => {
+    if (currentModalProductId) {
+        addToCart(currentModalProductId);
+        imageModal.hide(); // Hide the image modal after adding to cart
+    }
+});
+
+
+// Navigation
+homeLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    showPostersSection();
+    filterProducts('All'); // Reset filters to "All" when going to home
+    // Also reset active nav link
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+    homeLink.classList.add('active');
+    // Also reset active filter button
+    filterButtonsContainer.querySelectorAll('.btn').forEach(btn => {
+        btn.classList.remove('active', 'btn-primary');
+        btn.classList.add('btn-outline-primary');
+    });
+    const allButton = filterButtonsContainer.querySelector('.all-filter-button');
+    if (allButton) {
+        allButton.classList.add('active', 'btn-primary');
+        allButton.classList.remove('btn-outline-primary');
+    }
+});
+
+cartLinkDesktop.addEventListener('click', (event) => {
+    event.preventDefault();
+    showCartPage();
+    // Update active nav link
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+    cartLinkDesktop.classList.add('active');
+});
+
+cartLinkMobile.addEventListener('click', (event) => {
+    event.preventDefault();
+    showCartPage();
+    // Update active nav link
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+    cartLinkMobile.classList.add('active');
+});
+
+continueShoppingBtn.addEventListener('click', () => {
+    showPostersSection();
+    // Reset active nav link to Home
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+    homeLink.classList.add('active');
+});
+
+proceedToCheckoutBtn.addEventListener('click', () => {
+    if (cart.length > 0) {
+        // Reset form and confirmation message
+        shippingAddressForm.reset();
+        document.getElementById('shippingFormContent').style.display = 'block';
+        emailSentConfirmation.style.display = 'none';
+        mailtoModal.show();
+    } else {
+        showMessageBox('Cart Empty', 'Your cart is empty. Please add items before proceeding to checkout.');
+    }
+});
+
+shippingAddressForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const fullName = document.getElementById('fullName').value;
+    const addressLine1 = document.getElementById('addressLine1').value;
+    const addressLine2 = document.getElementById('addressLine2').value;
+    const city = document.getElementById('city').value;
+    const state = document.getElementById('state').value;
+    const zipCode = document.getElementById('zipCode').value;
+
+    const mailtoLink = generateMailtoLink(fullName, addressLine1, addressLine2, city, state, zipCode);
+
+    // Try to open the mailto link
+    const newWindow = window.open(mailtoLink, '_blank');
+    if (newWindow) {
+        newWindow.blur(); // Try to unfocus the new window
+        window.focus(); // Bring main window back into focus
+        document.getElementById('shippingFormContent').style.display = 'none';
+        emailSentConfirmation.style.display = 'block';
+    } else {
+        // Fallback if the pop-up was blocked
+        showMessageBox('Email Client Blocked', 'Your email client could not be opened automatically. Please copy the details below and send them manually to email@email.com:\n\n' + decodeURIComponent(mailtoLink.split('body=')[1]));
+    }
+});
+
+confirmEmailSentBtn.addEventListener('click', () => {
+    cart = []; // Clear the cart
+    saveCart();
+    updateCartCount();
+    mailtoModal.hide(); // Close the modal
+    showPostersSection(); // Go back to the main shopping page
+    showMessageBox('Success!', 'Your inquiry has been sent and your cart has been cleared. Thank you!');
+    // Reset active nav link to Home
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+    homeLink.classList.add('active');
+});
+
+messageBoxCloseBtn.addEventListener('click', hideMessageBox);
+messageBoxOverlay.addEventListener('click', (event) => {
+    if (event.target === messageBoxOverlay) {
+        hideMessageBox();
+    }
+});
+
+navbarBrandLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    showPostersSection();
+    filterProducts('All'); // Reset filters to "All" when going to home
+    // Also reset active nav link to Home
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => link.classList.remove('active'));
+    homeLink.classList.add('active');
+    // Also reset active filter button
+    filterButtonsContainer.querySelectorAll('.btn').forEach(btn => {
+        btn.classList.remove('active', 'btn-primary');
+        btn.classList.add('btn-outline-primary');
+    });
+    const allButton = filterButtonsContainer.querySelector('.all-filter-button');
+    if (allButton) {
+        allButton.classList.add('active', 'btn-primary');
+        allButton.classList.remove('btn-outline-primary');
+    }
+});
+
+contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const contactName = document.getElementById('contactName').value;
+    const contactEmail = document.getElementById('contactEmail').value;
+    const contactSubject = document.getElementById('contactSubject').value;
+    const contactMessage = document.getElementById('contactMessage').value;
+
+    const mailtoLink = generateContactMailtoLink(contactName, contactEmail, contactSubject, contactMessage);
+
+    const newWindow = window.open(mailtoLink, '_blank');
+    if (newWindow) {
+        newWindow.blur();
+        window.focus();
+        contactForm.reset();
+        contactModal.hide();
+        showMessageBox('Message Sent', 'Your contact message has been sent. We will get back to you shortly.');
+    } else {
+        showMessageBox('Email Client Blocked', 'Your email client could not be opened automatically. Please copy the details below and send them manually to email@email.com:\n\n' + decodeURIComponent(mailtoLink.split('body=')[1]));
+    }
+});
+
+// --- Initial Load ---
+document.addEventListener('DOMContentLoaded', () => {
+    renderFilterButtons();
+    filterProducts('All'); // Render all products by default
+    updateCartCount();
 
     // Scroll to Top Button Logic
     scrollToTopBtn.addEventListener('click', () => {
@@ -755,4 +589,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-// script.js content ends here
